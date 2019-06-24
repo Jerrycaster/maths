@@ -1,0 +1,32 @@
+\documentclass[../summer.tex]{subfile}
+
+\subsection{Quotients}
+\label{sec:2.1}
+
+  \begin{definition}[Quotient space]
+    Let $X$ be a non-empty set, and $\sim$ an equivalence relation on $X$. We define the \textit{quotient space}, $X/\sim$ to 
+    be the set of equivalence classes of $X$. I.e.
+    $$X/\sim=\{[x]:x\in X\}.$$
+  \end{definition}
+
+  \begin{definition}[Quotient topology]
+    Let $(X,\tau_X)$ be a topological space. We define the \textit{natural map}, $q:X\to X/\sim$, by $q(x)=[x]$ $\forall x\in X$. 
+    This is clearly surjective. We define the \textit{quotient topology}, $\tau_\sim$, to be
+    $$\tau_\sim = \{U\in X/\sim\,:q^{-1}(U)\in\tau_X\}.$$
+  \end{definition}
+
+  \begin{prop}
+    Any compact subset of a Hausdroff space is closed.
+  \end{prop}
+
+  \begin{prop}[Universal property of quotients]
+    If $f:X\to Z$ is continuous and constant on equivalence classes of $X$. (I.e. $f|_{[x]}$ is constant $\forall[x]\in X/\sim$), 
+    then there exists a unique continuous map $g:X/\sim\to Z$ such that 
+    $$f=g\circ q.$$
+  \end{prop}
+
+  \begin{definition}[Disjoint union]
+  \end{definition}
+
+  \begin{definition}[Quotient map]
+  \end{definition}

@@ -1,0 +1,138 @@
+\documentclass[../summer.tex]{subfile}
+
+\subsection{Sequences}
+\label{sec:1.1}
+
+  We denote set of positive integers as $\N$.
+
+  \begin{prop}
+    Let $a_i = (a_i^1,\ldots,a_i^n)\in\R^n$ be a sequence,  $\forall n\in\N$. Then $a_i\to a:=(a^1,\ldots,a^n)\in\R^n$, as $i\to\infty$ iff 
+    $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\ldots,n\}$.
+  \end{prop}
+
+  \begin{proof}
+    We know that 
+    $$\max_{k=1,\ldots,n}{|a^k|}\leq\|a\|\leq\sqrt{n}\max_{k=1,\ldots,n}{|a^k|}.$$
+
+    To show this, observe that:
+    $$\sqrt{\max_k{((a^k)}^2)}\leq\sqrt{(a^1)^2+\ldots+(a^n)^2}\leq\sqrt{n\max_k{((a^k)^2})}$$
+    $$\Rightarrow \sqrt{(\max_k{|a^k|})^2}\leq\|x\|\leq\sqrt{n(\max_k{|a^k|})^2}$$
+    $$\Rightarrow \max_k{|a^k|}\leq\|x\|\leq\sqrt{n}\max_k{|a^k|}$$
+    
+    First assume that $a_i\to a$ as $i\to\infty$. Then $\forall\epsilon>0$ $\exists N\in\N$ such that 
+    $\|a_i-a\|<\epsilon$ whenever $i\geq N$. \\
+
+    Then $\forall k=1\ldots n$, $|a^k_i-a^k|\leq\max_k{|a^k_i-a^k|}\leq\|a_i-a\|<\epsilon$ whenever $i\geq N$, 
+    so $a^k_i\to a^k$ as $i\to\infty$.\\
+
+    Conversely, assume that $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\ldots,n\}$.
+    Then $\forall\epsilon>0$, $\exists N^k\in\N$ such that $|a_i^k-a^k|\leq\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N^k$, $\forall k=1,\ldots,n$. Let 
+    $$N=\max_{k=1,\ldots,n}{N^k}.$$
+
+    Then $\max_k{|a^k_i-a^k|}<\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N$, so $\|a_i-a\|\leq\sqrt{n}\max_k{|a^k_i-a^k|}<\epsilon$.
+  \end{proof}
+
+  \begin{prop}
+    The limit of a sequence in $\R^n$ is unique.
+  \end{prop}
+
+  \begin{proof}
+    Let $(x_i)_{i\in\N}$ be a sequence with $x_i\in\R^n$. 
+    Suppose for a contradiction that $x_i\to a$ and $x_i\to b$ as $i\to\infty$, with $a\neq b$.\\
+
+    Then $\forall\epsilon>0$, $\exists N_a,N_b\in\N$ such that $\|x_i-a\|<\frac{\epsilon}{2}$ whenever 
+    $i\geq N_a$, and $\|x_i-b\|<\frac{\epsilon}{2}$ whenever $i\geq N_b$. Let
+    $$N=\max{\{N_a,N_b\}}.$$
+    Then whenever $i\geq N$, we have:
+    \begin{align*}
+    \|a-b\|&=\|a-x_i+x_i-b\|\\
+           &\leq\|a-x_i\|+\|x_i-b\|\\
+           &<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon,
+    \end{align*}
+    And since $\epsilon$ can be made arbitrarily small, we find that $a=b$, which is a contradiction.
+  \end{proof}
+
+
+  \begin{theorem}[Bolzano-Weierstrass]
+    Let $(a_n)_{n\in\N}$ be a bounded sequence of real numbers. Then $(a_n)_n\in\N$ has a convergent subsequence.
+  \end{theorem}
+
+  \begin{proof}
+    We say $x_i$ is a peak point of $(a_n)$ if $a_n\leq x_i, \forall n>i$.\\
+
+    Then either we have infinitely many peak points, or finitely many.
+    In the first case, we have an infinite subsequence, $(x_{i_j})_{j\in\mathbb{N}}$, of peak points which is non-increasing, since $a_{i_n}\leq x_{i_j}$
+    whenever $n>j$. Then since $(a_i)$ is bounded, so is $(x_{i_j})$, so it is convergent.\\
+
+    Now consider the case of finitely many peak points, say $x_1,\ldots x_k$. Choose 
+    $n_1>\text{max}\{1,\ldots,k\}$. Since $a_{n_1}$ is not a peak point, $\exists n_2 > n_1$ such that 
+    $a_{n_2}>a_{n_1}$. Since $a_{n_2}$ is not a peak point, $\exists n_3 > n_2$ such that 
+    $a_{n_3}>a_{n_2}$. Continuing inductively, with $a_{n_i}>a_{n_{i-1}}$, we obtain a decreasing subsequence 
+    $(a_{n_j})_{j\in\N}$. Then since $(a_{n_j})_{j\in\N}$ is bounded, it converges.
+  \end{proof}
+
+  \begin{cor}
+    Let $(a_i)_{i\in\N}$ be a bounded sequence, with $a_i\in\R^n\forall n\in\N$. Then $(a_i)$ has a convergent subsequence.
+  \end{cor}
+  \begin{proof}
+    Since $(a_i)$ is bounded, and the component sequences $(a_i^k)$ are bounded $\forall k=1,\dots,n$.\\
+
+    Then by Bolzano-Weierstrass, $(a_i^1),\dots,(a_i^n)$ have subsequences $(a_{i_{j_1}}^1), \dots, (a_{i_{j_n}}^n)$ 
+    converging to $a^1,\dots,a^n$ respectively. Let 
+    \begin{align*}
+      J_1&=\{j_{1_1},j_{1_2},\dots\},\\
+      J_2&=\{j_{2_1},j_{2_2},\dots\},\\
+         &\vdots \\
+      J_n&=\{j_{n_1},j_{n_2},\dots\},
+    \end{align*}
+    and $J=J_1\cap\dots\cap J_n$.\\
+
+    Then each component subsequence $(a_j^k)_{j\in J}$ converges to $a^k$, so $(a_j)_{j\in J}$ converges to $a$.
+  \end{proof}
+
+\subsection{Continuity}
+\label{sec:1.2}
+
+  \begin{definition}[Continuous]
+    Let $A\subset\R^n$ be open. We say $f:A\to\R^m$ is \textit{continuous} on $A$ if, 
+    $\forall a\in A$, $\forall\epsilon>0$ $\exists\delta>0$ such that 
+    $\|f(x)-f(a)\|<\epsilon$, whenever $\|x-a\|<\delta$.
+  \end{definition}
+
+  \begin{prop}
+    For $f:A\to\R^m$, we write $f(x)=(f_1(x),\dots,f_m(x))$.\\
+
+    Then $f$ is continuous if and only if each of the component functions 
+    $f_i:A\to\R$ are continuous.
+  \end{prop}
+
+  \begin{proof}
+    First assume $f$ is continuous at $a\in A$. Then $\forall\epsilon>0$ 
+    $\exists\delta>0$ such that $\|f(x)-f(a)\|<\epsilon$ whenever $\|x-a\|<\delta$. Then 
+    \begin{align*}
+      |f_i(x)-f_i(a)|&\leq\max_i{|f_i(x)-f_i(a)|}\\
+                     &\leq\|f(x)-f(a)\|<\epsilon\quad\forall i=1,\dots,m
+    \end{align*}
+
+    Hence each $f_i$ is continuous at $a$. Now assume that each $f_i$ is continuous at $a\in A$.\\
+
+    Then $\forall\epsilon>0$, $\exists\delta_i>0$ such that $|f_i(x)-f_i(a)|<\frac{\epsilon}{\sqrt{n}}$
+    whenever $\|x-a\|<\delta_i$, $\forall i=1,\dots,m$. Now let $\delta=\min{\{\delta_1,\dots,\delta_m\}}$\\
+
+    Then when $\|x-a\|<\delta$, $\|x-a\|<\delta_i$ $\forall i=1,\dots,m$, so $\|f(x)-f(a)\|\leq\sqrt{n}\max_i{|f_i(x)-f_i(a)|}$
+  \end{proof}
+
+  \begin{prop}
+    Let $A\subset\R^n$ be open. Then $f:A\to\R^m$ is continuous at $x\in A$ if and only if 
+    $f(x_i)\to f(x)$ as $i\to\infty$ for any sequence $x_i$ converging to $x$.
+  \end{prop}
+
+  \begin{definition}[Uniformly Continuous]
+    Let $A\subset\R^n$ be open. We say $f:A\to\R^m$ is \textit{uniformly continuous} on $A$ if, 
+    $\forall\epsilon>0$ $\exists\delta>0$ such that 
+    $\|f(x)-f(a)\|<\epsilon$ whenever $\|x-a\|<\delta$, $\forall a\in A$.
+  \end{definition}
+
+  \begin{prop}
+    A continuous function on a compact interval is uniformly continuous.
+  \end{prop}
