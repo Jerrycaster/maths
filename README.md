@@ -1,3 +1,3 @@
-# maths
+# Maths
 
-i'm learning group theory
+This is where is leave my maths. Stay woke.
