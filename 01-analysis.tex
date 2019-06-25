@@ -241,7 +241,7 @@
     $\exists x_i,y_i\in E$ with $\|x_i-y_i\|<\frac{1}{i}$ such that $\|f(x_i)-f(y_i)\|\geq\epsilon$.\\
 
     Then by the Bolzano-Weierstrass theorem, the sequence $(x_i)_{i\in\N}$ has a
-    subsequences $(x_{i_j})_{j\in\N}$ converging to $x\in E$.  Furthermore, the sequence $(y_i)_{i\in\N}$ 
+    subsequences $(x_{i_j})_{j\in\N}$ converging to some $x\in E$.  Furthermore, the sequence $(y_i)_{i\in\N}$ 
     has a convergent subsequence $(y_{i_j})_{j\in\N}$. We now show that $y_{i_j}\to x$ as $j\to\infty$.
 
     Choose $\epsilon'>0$. Then $\exists N\in\N$ such that $\|x_{i_j}-x\|<\frac{\epsilon'}{2}$ whenever $i_j\geq N$.
@@ -255,3 +255,7 @@
     \end{align*}
     
   \end{proof}
+
+  \begin{theorem}[Heine-Borel]
+    Let $A\subset\R^n$ be closed and bounded. Then $A$ is compact.
+  \end{theorem}
