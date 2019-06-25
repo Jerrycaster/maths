@@ -61,8 +61,8 @@
     We say $x_i$ is a peak point of $(a_n)$ if $a_n\leq x_i, \forall n>i$.\\
 
     Then either we have infinitely many peak points, or finitely many.
-    In the first case, we have an infinite subsequence, $(x_{i_j})_{j\in\mathbb{N}}$, of peak points which is non-increasing, since $a_{i_n}\leq x_{i_j}$
-    whenever $n>j$. Then since $(a_i)$ is bounded, so is $(x_{i_j})$, so it is convergent.\\
+    In the first case, we have an infinite subsequence, $(x_{i_j})_{j\in\mathbb{N}}$, of peak points which is non-increasing, 
+    since $a_{i_n}\leq x_{i_j}$ whenever $n>j$. Then since $(a_i)$ is bounded, so is $(x_{i_j})$, so it is convergent.\\
 
     Now consider the case of finitely many peak points, say $x_1,\ldots x_k$. Choose 
     $n_1>\text{max}\{1,\ldots,k\}$. Since $a_{n_1}$ is not a peak point, $\exists n_2 > n_1$ such that 
@@ -90,10 +90,10 @@
     Then each component subsequence $(a_j^k)_{j\in J}$ converges to $a^k$, so $(a_j)_{j\in J}$ converges to $a$.
   \end{proof}
 
-\subsection{Continuity}
+\subsection{Continuous Functions}
 \label{sec:1.2}
 
-  \begin{definition}[Continuous]
+  \begin{definition}[Continuity]
     Let $A\subset\R^n$ be open. We say $f:A\to\R^m$ is \textit{continuous} on $A$ if, 
     $\forall a\in A$, $\forall\epsilon>0$ $\exists\delta>0$ such that 
     $\|f(x)-f(a)\|<\epsilon$, whenever $\|x-a\|<\delta$.
@@ -111,28 +111,147 @@
     $\exists\delta>0$ such that $\|f(x)-f(a)\|<\epsilon$ whenever $\|x-a\|<\delta$. Then 
     \begin{align*}
       |f_i(x)-f_i(a)|&\leq\max_i{|f_i(x)-f_i(a)|}\\
-                     &\leq\|f(x)-f(a)\|<\epsilon\quad\forall i=1,\dots,m
+                     &\leq\|f(x)-f(a)\|\\
+                     &<\epsilon\quad\forall i=1,\dots,m.
     \end{align*}
 
     Hence each $f_i$ is continuous at $a$. Now assume that each $f_i$ is continuous at $a\in A$.\\
 
-    Then $\forall\epsilon>0$, $\exists\delta_i>0$ such that $|f_i(x)-f_i(a)|<\frac{\epsilon}{\sqrt{n}}$
+    Then $\forall\epsilon>0$, $\exists\delta_i>0$ such that $|f_i(x)-f_i(a)|<\frac{\epsilon}{m\sqrt{m}}$
     whenever $\|x-a\|<\delta_i$, $\forall i=1,\dots,m$. Now let $\delta=\min{\{\delta_1,\dots,\delta_m\}}$\\
 
-    Then when $\|x-a\|<\delta$, $\|x-a\|<\delta_i$ $\forall i=1,\dots,m$, so $\|f(x)-f(a)\|\leq\sqrt{n}\max_i{|f_i(x)-f_i(a)|}$
+    Then when $\|x-a\|<\delta$, $\|x-a\|<\delta_i$, so $|f_i(x)-f_i(a)|<\frac{\epsilon}{m\sqrt{m}}$ 
+    $\forall i=1,\dots,m$. Then
+    \begin{align*}
+    \|f_i(x)-f_i(a)\|&\leq\sqrt{m}\max_i{|f_i(x)-f_i(a)|}\\
+                     &\leq\sqrt{m}\sum_{i=1}^m{|f_i(x)-f_i(a)|}\\
+                     &<\epsilon
+    \end{align*}    
   \end{proof}
+
+  \begin{example}
+    Every linear function is continuous.
+  \end{example}
 
   \begin{prop}
     Let $A\subset\R^n$ be open. Then $f:A\to\R^m$ is continuous at $x\in A$ if and only if 
-    $f(x_i)\to f(x)$ as $i\to\infty$ for any sequence $x_i$ converging to $x$.
+    $f(x_i)\to f(x)$ as $i\to\infty$ for any sequence $(x_i)$ converging to $x$.
   \end{prop}
+
+  \begin{proof}
+    Let $(x_i)$ be a sequence in $A$ converging to $x\in A$, and assume $f:A\to\R^m$ to be continuous at $x$.
+    Then $\forall\epsilon>0$, $\exists\delta>0$ such that $\|f(x)-f(y)\|<\epsilon$ 
+    whenever $0<\|x-y\|<\delta$.\\
+
+    Since $x_i\to x$, $\nat$ such that $\|x_i-x\|<\delta$ whenever $i\geq N$, and hence $\|f(x_i)-f(x)\|<\epsilon$, 
+    so we have that $f(x_i)\to f(x)$ as $i\to\infty$.\\
+
+    Now assume the converse holds, and for a contradiction that $f$ is not continuous. Then $\exists\epsilon>0$ 
+    such that $\forall\delta>0$ $\|f(x)-f(x_i)\|\geq\epsilon$ whenever $0<\|x-x_i\|<\delta$, 
+    and in particular whenever $0<\|x-x_i\|<\frac{1}{i}$, $\forall i\in\N$.\\
+
+    Then the sequence $(x_i)$ converges to $x$, so by assumption the image sequence $(f(x_i))$ converges to $f(x)$.\\
+
+    Thus $\exists N\in\N$ such that $\|f(x_i)-f(x)\|<\epsilon$ whenever $i\geq N$, which is a contradiction.
+    Hence, $f$ is continuous at $x$.
+  \end{proof}
+
+  \begin{theorem}[Extreme Value Theorem]
+    Let $E\subset\R^n$ be compact and non-empty. Let $f:E\to\R$ be continuous.
+    Then $f$ achieves its maximum and minimum values on $E$.
+  \end{theorem}
+
+  \begin{proof}
+    We prove that $f$ reaches its maximum on $E$. First suppose for a contradiction that 
+    $f$ is unbounded above on $E$. Then $\forall M\geq 0$, and in particular 
+    $\forall i\in\N$, $\exists x_i\in E$ such that $f(x_i)>i$. 
+    In other words, $f(x_i)\to\infty$ as $i\to\infty$.\\
+
+    Then since $E$ is compact, it is bounded, so the sequence $(x_i)_{i\in\N}$ is bounded. 
+    Then by the Bolzano-Weierstrass theorem it has a subsequence $(x_{i_j})_{j\in\N}$ convergent to $x\in E$.\\
+
+    Now since $f$ is continuous on $E$, it is continuous at $x$, so $f(x_{i_j})\to f(x)$ as $j\to\infty$.
+    Since $E$ is compact, it is closed, so $f(x)\in E$, and therefore $f(x)$ is finite. This is a contraction since 
+    $f$ was assumed to diverge to infinity for any subsequence of $(x_i)$, including $(x_{i_j})$.\\
+
+    So $f$ is bounded above on $E$. Now by completeness of $\R$, $f(E)$ has a supremum, say 
+    $$M=\sup_{x\in E}{f(x)}.$$ 
+    We show that that $f$ reaches its maximum on $E$, i.e. that $M\in f(E)$, or 
+    that $\exists p_+\in E$ such that $f(p_+)=M$. Now $\forall i\in\N$, $\exists x_i\in E$ such that 
+    $$M-\frac{1}{i}<f(x_i)\leq M.$$
+    Then clearly $f(x_i)\to M$ as $i\to\infty$, so by the Bolzano-Weierstrass theorem $(x_i)_{i\in\N}$ has 
+    a subsequence $(x_{i_j})_{j\in\N}$ convergent in to some $p_+\in E$. Since $f$ is continuous at $p_+$, 
+    $f(x_{i_j})\to f(p_+)$ as $j\to\infty$. Hence $f(p_+)=M$, so $f$ achieves its maximum on $E$.\\
+
+    Now in a similar fashion we prove that $f$ reaches its minimum on $E$. Suppose that 
+    $f$ is unbounded below on $E$. Then $\forall i\in\N$, $\exists x_i\in E$ such that $f(x_i)<-i$. 
+    So $f(x_i)\to-\infty$ as $i\to\infty$.\\
+
+    Now, the sequence $(x_i)_{i\in\N}$ is bounded. Then by the Bolzano-Weierstrass theorem it has a 
+    subsequence $(x_{i_j})_{j\in\N}$ convergent to $x\in E$. Since $f$ is continuous at $x$, $f(x_{i_j})\to f(x)$ as $j\to\infty$, 
+    and so $f(x)\in E$ (so $f(x)$ is finite). This is a contraction since 
+    $f$ was assumed to diverge to negative infinity for any subsequence of $(x_i)$, including $(x_{i_j})$.\\
+
+    So $f$ is bounded below on $E$. Now by completeness of $\R$, $f(E)$ has an infimum, say 
+    $$m=\inf_{x\in E}{f(x)}.$$ 
+    We show that that $f$ reaches its minimum on $E$, i.e. that $m\in f(E)$, or 
+    that $\exists p_-\in E$ such that $f(p_-)=m$. Now $\forall i\in\N$, $\exists x_i\in E$ such that 
+    $$m\leq f(x_i)<m+\frac{1}{i}.$$
+    Then clearly $f(x_i)\to m$ as $i\to\infty$, so by the Bolzano-Weierstrass theorem $(x_i)_{i\in\N}$ has 
+    a subsequence $(x_{i_j})_{j\in\N}$ convergent in to some $p_-\in E$. Since $f$ is continuous at $p_-$, 
+    $f(x_{i_j})\to f(p_-)$ as $j\to\infty$. Hence $f(p_-)=m$, so $f$ achieves its minimum on $E$.
+  \end{proof}
+
+\subsection{Uniform Continuity and Convergence}
+\label{sec:1.3}
 
   \begin{definition}[Uniformly Continuous]
     Let $A\subset\R^n$ be open. We say $f:A\to\R^m$ is \textit{uniformly continuous} on $A$ if, 
-    $\forall\epsilon>0$ $\exists\delta>0$ such that 
-    $\|f(x)-f(a)\|<\epsilon$ whenever $\|x-a\|<\delta$, $\forall a\in A$.
+    $\forall\epsilon>0$ $\exists\delta>0$ such that $\forall x,y\in A$,
+    $\|f(x)-f(y)\|<\epsilon$ whenever $\|x-y\|<\delta$.
   \end{definition}
 
+  \textbf{Remark:} Clearly uniform continuity implies continuity.
+
   \begin{prop}
-    A continuous function on a compact interval is uniformly continuous.
+    Let $f:\R\to\R$ be differentiable with bounded derivative. Then $f$ is uniformly continuous.
   \end{prop}
+
+  \begin{proof}
+    Fix $\eps$. Then $\forall x,y\in\R$ with $x<y$, by the Mean Value Theorem 
+    $\exists c\in(x,y)$ such that $f'(c)=\frac{f(y)-f(x)}{y-x}$. By assumption 
+    $\exists M\geq 0$ such that $|f'(c)|=\frac{|f(y)-f(x)|}{|y-x|}\leq M$.\\
+
+    Set $\delta = \frac{\epsilon}{M+1}$. Then 
+    \begin{align*}
+      |f(y)-f(x)|&\leq M|y-x|\\
+                 &<\frac{M\epsilon}{M+1}\\
+                 &<\frac{M\epsilon}{M}\\
+                 &=\epsilon
+    \end{align*}
+  \end{proof}
+
+  \begin{prop}
+    A continuous function on a compact subset $E\subset\R^n$ is uniformly continuous.
+  \end{prop}
+
+  \begin{proof}
+    Let $E\subset\R^n$ be compact, and $f:E\to\R^m$ continuous. We assume for a contradiction that 
+    $f$ is not uniformly continuous. Then $\exists\epsilon>0$ such that $\forall i\in\N$ 
+    $\exists x_i,y_i\in E$ with $\|x_i-y_i\|<\frac{1}{i}$ such that $\|f(x_i)-f(y_i)\|\geq\epsilon$.\\
+
+    Then by the Bolzano-Weierstrass theorem, the sequence $(x_i)_{i\in\N}$ has a
+    subsequences $(x_{i_j})_{j\in\N}$ converging to $x\in E$.  Furthermore, the sequence $(y_i)_{i\in\N}$ 
+    has a convergent subsequence $(y_{i_j})_{j\in\N}$. We now show that $y_{i_j}\to x$ as $j\to\infty$.
+
+    Choose $\epsilon'>0$. Then $\exists N\in\N$ such that $\|x_{i_j}-x\|<\frac{\epsilon'}{2}$ whenever $i_j\geq N$.
+    \begin{align*}
+    \|x-y_{i_j}\|&=\|x-x_{i_j}+x_{i_j}-y_{i_j}\|\\
+                 &\leq\|x-x_{i_j}\|+\|x_{i_j}-y_{i_j}\|\\
+                 &<\frac{\epsilon'}{2}+\frac{1}{i_j}\\
+                 &\leq\frac{\epsilon'}{2}+\frac{1}{j}\\
+                 &<\frac{\epsilon'}{2}+\frac{\epsilon'}{2}\\
+                 &=\epsilon'
+    \end{align*}
+    
+  \end{proof}
