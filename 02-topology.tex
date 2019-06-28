@@ -85,10 +85,12 @@
   \end{proof}
 
   \begin{definition}[Quotient topology]
-    Let $(X,\tau_X)$ be a topological space. We define the \textit{natural map}, $p:X\to \X$, by $p(x)=[x]$ $\forall x\in X$. 
-    We define the \textit{quotient topology}, $\tau_\sim$, to be
-    $$\tau_\sim = \{U\in \X:p^{-1}(U)\in\tau_X\}.$$
-    Note that $\tau_\sim$ is finest topology on $\X$ such that the natural map $p$ is continuous.
+    Let $(X,\tau_X)$ be a topological space, and $\sim$ an equivalence relation on $X$. 
+    We define the \textit{natural map}, $p:X\to\X$, by $p(x)=[x]$ $\forall x\in X$. \\
+
+    Then $(\X,\tau)$ is a topological space, where the \textit{quotient topology}, $\tau$, is defined by
+    $$\tau=\{U\in \X:p^{-1}(U)\in\tau_X\}.$$
+    Note that $\tau$ is finest topology on $\X$ such that the natural map $p$ is continuous.
     We say that it is the \textit{final topology} on $\X$ with respect to $p$.
   \end{definition}
 
@@ -142,10 +144,10 @@
 \label{sec:2.2}
 
   \begin{definition}[Automorphism group]
-    Given an object $X$, an \textit{automorphism} is an isomorphism, $\phi$, from $X$ to itself. Explicitly,
+    Given a mathematical structure $X$, an \textit{automorphism} is an isomorphism, $\phi$, from $X$ to itself. Explicitly,
     $$\phi:X\to X.$$
     Coloquially, automorphisms are invertible mappings that preserve structure. In fact, they form a group under composition, 
-    called the \textit{automorphism group} of $X$, which we denote $\text{Aut}(X)$.
+    called the \textit{automorphism group} of $X$, which we denote $\Aut{X}$.
   \end{definition}
 
   \begin{example}
@@ -153,12 +155,15 @@
     \end{verbatim}
     \begin{enumerate}
       \item If $X$ is a set with $n$ elements, then
-            $$\text{Aut}(X)=S_n,$$
+            $$\Aut{X}=S_n,$$
             the group of permutations of the elements of $X$.
-      \item If $X$ is an $n$-dimensional vector space over a field $F$, then 
-            $$\text{Aut}(X)=\text{GL}_n(F),$$
+      \item If $V$ is an $n$-dimensional vector space over a field $F$, then 
+            $$\Aut{V}=\text{GL}_n(F),$$
             the group of invertible $n\times n$ matrices over $F$, or equivalently the group of invertible linear 
-            transformations from $X$ to itself.
+            transformations from $V$ to itself.
+      \item If $(X,\tau)$ is a topological space, then 
+            $$\Aut{X}=\Homeo{X},$$
+            the group of homeomorphisms of $X$.
     \end{enumerate}
   \end{example}
 
@@ -176,8 +181,8 @@
     $\phi$ is a \textit{group action}.
   \end{definition}
 
-  We can think of a group action as a homomorphism $\psi:G\to\text{Aut}(X):g\mapsto\sigma$, where $\sigma(x)=g\cdot x$. Then the action of $g\in G$ 
-  on $x\in X$ is equivalent to applying $\sigma$ to $x$.
+  We can think of a group action as a homomorphism $\psi:G\to\text{Aut}(X):g\mapsto\sigma$, where $\sigma(x)=g\cdot x$. 
+  Then the action of $g\in G$ on $x\in X$ is equivalent to applying $\sigma$ to $x$.
 
   \begin{definition}[Orbit]
     Consider a group $G$ acting on a set $X$. We define the \textit{orbit}, $G\cdot x$,
@@ -194,8 +199,8 @@
 
   \begin{definition}[Stabiliser subgroup]
     Given $g\in G$ and $x\in X$ such that $g\cdot x=x$, we say that $g$ fixes $x$, in other words 
-    $g$ acts as the identity on $x$. So for all $x\in X$, we define the \textit{stabiliser subgroup}, $G_x\subset G$, of $G$ with respect to 
-    $x$ as the set of elements in $G$ that fix $x$. Explicitly, given $x$,
+    $g$ acts as the identity on $x$. So for all $x\in X$, we define the \textit{stabiliser subgroup}, 
+    $G_x\subset G$, of $G$ with respect to $x$ as the set of elements in $G$ that fix $x$. Explicitly, given $x$,
     $$G_x=\{g\in G:g\cdot x=x\}.$$
   \end{definition}
 
@@ -203,12 +208,15 @@
     $G_x$ is indeed a subgroup of $G$.
   \end{prop}
 
-  \begin{prop}
-    Let $\psi:G\to\text{Aut}(X)$ be a homomorphism. Then
-    $$\text{Ker}(\psi)=\bigcap_{x\in X}{G_x}.$$
-  \end{prop}
+%  \begin{prop}
+%    Let $\psi:G\to\text{Aut}(X)$ be a homomorphism. Then
+%    $$\text{Ker}(\psi)=\bigcap_{x\in X}{G_x}.$$
+%  \end{prop}
 
-  $G_x$ is generally not a normal subgroup of $G$. However,
+  $G_x$ is generally not a normal subgroup of $G$. However, given an $x\in X$, we can define an 
+  equivalent relation, $\sim$, on $G$ by 
+  $$g\sim h\Longleftrightarrow G_xg=G_xh,\quad g,h\in G.$$
+  We can then form the quotient set $\G$ to be the set of cosets of $G_x$ in $G$, denoted $G/G_x$.
 
   \begin{lemma}
     Given $x,y\in X$, and $g\in G$ such that $y=g\cdot x$, 
@@ -229,11 +237,11 @@
   \end{proof}
 
   \begin{theorem}[Orbit-stabiliser theorem]
-    For a fixed $x\in X$, there exists a bijection $\psi:\frac{G}{G_x}\to G\cdot x.$
+    For a fixed $x\in X$, there exists a bijection $\psi:G/G_x\to G\cdot x.$
   \end{theorem}
 
   \begin{proof}
-    We define a map $\psi:\frac{G}{G_x}\to G\cdot x$ by $\psi(G_xg)=g\cdot x$, $\forall g\in G$.
+    We define a map $\psi:G/G_x\to G\cdot x$ by $\psi(G_xg)=g\cdot x$, $\forall g\in G$.
     First, we show this an injective, well-defined function: Fix $x\in X$, and let $G_xg=G_xh$. Then 
     \begin{align*}
       G_xg^{-1}h=G_x &\Longleftrightarrow g^{-1}h\in G_x \\
@@ -419,24 +427,23 @@
   \begin{enumerate}
     \item Let $A$ be a subset of a topological space $X$, and $q:A\to Y$ be a quotient map.
           We define an equivalence relation $\sim$ on $A$ by
-          $$x\sim y \Leftrightarrow f(x)=f(y),\quad\forall x,y\in A.$$
-          Then we define $X\cup_f Y=X/\sim$.\\
+          $$x\sim y \Leftrightarrow q(x)=q(y),\quad\forall x,y\in A.$$
+          Then we define $X\cup_q Y=\X.$\\
 
           If $Y$ is a singlet set, then we call this \textit{collapsing}, and 
-          denote it $\frac{X}{A}$.
+          denote it $X/A$.
     \item Instead let $f:A\to Y$ be continuous, and define $\sim$ on $Y$ by 
           $x\sim f(x)\quad\forall x\in A$. Then we define 
-          $$X\cup_f Y=X\sqcup Y/\sim.$$
+          $$X\cup_q Y=X\sqcup Y\,/\sim.$$
   \end{enumerate}
 
 \subsection{Lie Groups}
 \label{sec:2.6}
 
   \begin{definition}[Manifold]
-    An \textit{$n$-dimensional manifold} is a topological space $X$ with is locally homeomorphic to $\R^n$. 
-    That is, $\forall x\in X$, there exists an open neighbourhood $U\subset X$ of $x$ such that there is a function 
-    $$f:U\to\R^n$$
-    which is a homeomorphism. 
+    An \textit{manifold}, $X$, of dimension $n$ is a topological space with is locally homeomorphic to $\R^n$. 
+    That is, $\forall x\in X$, there exists an open neighbourhood $U\subset X$ of $x$ such that there is a homeomorphism 
+    $$f:U\to\R^n.$$
   \end{definition}
 
   \begin{definition}[Lie group]
