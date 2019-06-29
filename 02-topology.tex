@@ -38,8 +38,8 @@
   \end{proof}
 
   \begin{definition}[Quotient set]
-    Let $X$ be a non-empty set, and $\sim$ an equivalence relation on $X$. We define the \textit{quotient set}, or \textit{quotient space}, 
-    $\X$ to be the set of equivalence classes of $X$. I.e.
+    Let $X$ be a non-empty set, and $\sim$ an equivalence relation on $X$. We define the \textit{quotient set}, 
+    or \textit{quotient space}, $\X$ to be the set of equivalence classes of $X$. I.e.
     $$\X=\{[x]:x\in X\}.$$
   \end{definition}
 
@@ -85,14 +85,59 @@
   \end{proof}
 
   \begin{definition}[Quotient topology]
-    Let $(X,\tau_X)$ be a topological space, and $\sim$ an equivalence relation on $X$. 
-    We define the \textit{natural map}, $p:X\to\X$, by $p(x)=[x]$ $\forall x\in X$. \\
+    Let $(X,\tau_x)$ be a topological space, $Y$ a set, and $f:X\to Y$ a surjective function. Then a subset 
+    $U\subset Y$ is open in $Y$ if and only if $f^{-1}(U)$ is open in $X$. In other words, this 
+    topology, called the \textit{quotient topology}, is the finest topology we can define on $Y$ such 
+    that $f$ is continuous, called the \textit{final topology} on $Y$ with respect to $f$. \\
 
-    Then $(\X,\tau)$ is a topological space, where the \textit{quotient topology}, $\tau$, is defined by
+    The key example here is given by defining an equivalence relation, $\sim$ on $X$, and then 
+    taking $Y=\X$. We then define the \textit{natural map}, $p:X\to\X$, by $p(x)=[x]$ $\forall x\in X$. \\
+
+    Then $(\X,\tau)$ is a topological space, where the quotient topology, $\tau$, is defined by
     $$\tau=\{U\in \X:p^{-1}(U)\in\tau_X\}.$$
-    Note that $\tau$ is finest topology on $\X$ such that the natural map $p$ is continuous.
-    We say that it is the \textit{final topology} on $\X$ with respect to $p$.
+    Note that $\tau$ is the final topology on $\X$ with respect to $p$.
   \end{definition}
+
+  \begin{definition}[Separateness conditions]
+    \verb%%
+    \begin{enumerate}
+      \item Hausdorff: A topological space $X$ is called \textit{Hausdorff} iff $\forall x,y\in X,\, 
+            \exists U_x,U_y\text{ such that }U_x\cap U_y=\varnothing$, where $U_x,U_y$ are open 
+            neighbourhoods of $x,y$ respectively. \\
+
+            This asserts that every two points in $X$ can be `separated' by open sets - open 
+            neighbourhoods that are disjoint. Conversely, $X$ is non-Hausdorff if there exists a pair of points 
+            $x,y\in X$ such for every open neighbourhood $U_x$ of $x$ and $U_y$ of $y$, $U_x\cap U_y
+            \neq\varnothing$. \\
+
+            For example, if $X=\{x,y,z\}$ and $\tau=\{\varnothing,\{x\},\{x,y\},\{x,z\},X\}$, then $X$ is 
+            non-Hausdorff since the open neighbourhoods of $x$ are $\{x\},\{x,y\},\{x,z\}$, and the only open 
+            neighbourhoods of $y,z$  $\{x,y\},\{x,z\}$ respectively, which are all clearly non-disjoint.
+      \item Regular: A topological space $X$ is called \textit{regular} iff for any $x\in X$ and any 
+            closed set $V\subset X$, there exists an open neighbourhood $U_x$ of $x$ and an open 
+            superset $U_V$ of $V$, such that $U_x\cap U_V=\varnothing$.
+      \item Normal: A topological space $X$ is called \textit{normal} iff for any pair of closed sets 
+            $V_1,V_2\subset X$ there exist open supersets $U_1,U_2$ of $V_1,V_2$ such that $U_1\cap U_2=\varnothing$.
+    \end{enumerate}
+  \end{definition} 
+
+  \begin{example}
+    Let $X$ be a non-Hausdroff topological space. Then we can turn $X$ into a Hausdorff space by 
+    considering the equivalence relation $\sim$ on $X$ defined by 
+    $$x\sim y\Longleftrightarrow U_x\cap U_y\neq\varnothing$$
+    for all open neighbourhoods $U_x,U_y$ of $x,y$ respectively. \\
+
+    Then the quotient space $\X$ is Hausdorff when given the quotient topology.
+  \end{example}
+
+  \begin{proof}
+    So $U\subset\X$ is open if and only if $p^{-1}(U)$ is open, where $p:X\to\X$ maps $x\in X$ to 
+    the set of points which cannot be separated from $x$ by open sets, denoted $[x]$. \\
+
+    So we fix distinct $[x],[y]\in\X$. Now, $p^{-1}(\{[x]\})$ is 
+    open in $X$, so $\{[x]\}$ is open in $\X$. Similarly, $\{[y]\}$ is open in $\X$. Finally, note 
+    that $\{[x]\}\cap\{[y]\}=\varnothing$, and so $\X$ is Hausdorff.
+  \end{proof}
 
   \begin{definition}[Quotient map]
     We say $q:X\to Y$ between topological spaces $X$ and $Y$ is a \textit{quotient map} 
@@ -151,8 +196,7 @@
   \end{definition}
 
   \begin{example}
-    \begin{verbatim}
-    \end{verbatim}
+    \verb%%
     \begin{enumerate}
       \item If $X$ is a set with $n$ elements, then
             $$\Aut{X}=S_n,$$
@@ -163,26 +207,43 @@
             transformations from $V$ to itself.
       \item If $(X,\tau)$ is a topological space, then 
             $$\Aut{X}=\Homeo{X},$$
-            the group of homeomorphisms of $X$.
+            the group of homeomorphisms of $X$. \\
     \end{enumerate}
   \end{example}
 
-  We can think of $\text{Aut}(X)$ as \textit{acting} on $X$ in an invertible way. In particular,
+  Given a set $X$, we can think of $\Aut{X}$ as \textit{acting} on $X$ in an invertible way.
+  Explicitly, we describe the \textit{group action} of $\Aut{X}$ on $X$ by the function:
+  $$\Aut{X}\times X\to X:(\sigma,x)\mapsto \sigma\cdot x,\quad\forall\sigma\in\Aut{x},$$
+  such that the following hold $\forall x\in X$, where $\sigma\cdot x$ refers to outcome of acting 
+  on $x\in X$ by an automorphism $\sigma\in\Aut{X}$, and the identity in $\Aut{X}$ is denoted $e$:
+  \begin{enumerate}
+    \item \textit{Identity}: $e\cdot x=x$
+    \item \textit{Compatibility}: $(\sigma\rho)\cdot x=\sigma\cdot(\rho\cdot x),\quad\forall
+                                    \sigma,\rho\in\Aut{X}$
+  \end{enumerate}
+
+  In fact, this is a special case of an arbitrary group $G$ acting on $X$. We specify the action 
+  by describing a homomorphism
+  $$\phi:G\to\Aut{X}.$$
+  Which amounts to assigning an automorphism of $X$ to each element of $G$ in such a way that
+  \begin{enumerate}
+    \item The identity transformation in $\Aut{X}$ is assigned to the identity in $G$,
+    \item The composition of the permutations assigned to two elements $g,h\in G$ is assigned to 
+          the product $gh$.
+  \end{enumerate}
+  Since $\text{Im}(\phi)$ is a subgroup of $\Aut{X}$, we define the action of $G$ on $X$ by 
+  the group action of the homomorphic image of $G$, in $\Aut{X}$, on $X$. Specifically:
 
   \begin{definition}[Group action]
-    Let $G$ be a group and $X$ a set. The \textit{(left) group action}, $\phi$, is a function
-    $$\phi:G\times X\to X.$$
-    such that the following hold $\forall x\in X$, where we denote $\phi(g,x)$ by $g\cdot x$, and $e$ the identity in $G$:
+    Let $G$ be a group and $X$ a set. The \textit{(left) group action}, is a function
+    $$G\times X\to X:(g,x)\mapsto g\cdot x,$$
+    such that the following hold $\forall x\in X$, where we $e$ is the identity in $G$:
     \begin{enumerate}
       \item \textit{Identity}: $e\cdot x=x$
       \item \textit{Compatibility}: $(gh)\cdot x=g\cdot(h\cdot x)\quad\forall g,h\in G$
     \end{enumerate}
-    Here $G$ is called a \textit{transformation group}, $X$ is called a \textit{$G$-set}, and 
-    $\phi$ is a \textit{group action}.
+    Here $G$ is called a \textit{transformation group}, $X$ is called a \textit{$G$-set}.
   \end{definition}
-
-  We can think of a group action as a homomorphism $\psi:G\to\text{Aut}(X):g\mapsto\sigma$, where $\sigma(x)=g\cdot x$. 
-  Then the action of $g\in G$ on $x\in X$ is equivalent to applying $\sigma$ to $x$.
 
   \begin{definition}[Orbit]
     Consider a group $G$ acting on a set $X$. We define the \textit{orbit}, $G\cdot x$,
@@ -216,7 +277,9 @@
   $G_x$ is generally not a normal subgroup of $G$. However, given an $x\in X$, we can define an 
   equivalent relation, $\sim$, on $G$ by 
   $$g\sim h\Longleftrightarrow G_xg=G_xh,\quad g,h\in G.$$
-  We can then form the quotient set $\G$ to be the set of cosets of $G_x$ in $G$, denoted $G/G_x$.
+  We can then form the quotient set $\G$ to be the set of cosets of $G_x$ in $G$, denoted $G/G_x$. 
+  Explicitly, given $x\in X$,
+  $$\frac{G}{G_x}=\{G_xg:g\in G\}.$$
 
   \begin{lemma}
     Given $x,y\in X$, and $g\in G$ such that $y=g\cdot x$, 
@@ -271,6 +334,9 @@
     are continuous, where $G\times G$ is given the product topology.
   \end{definition}
 
+  For example, we can turn every finite group into a topological group by giving it the discrete 
+  topology.
+
   \begin{definition}[Homomorphism of topological groups]
     Let $G,H$ be topological groups. Then a \textit{homomorphism of topological groups} is a 
     structure-preserving map (i.e. a group homomorphism), $\phi:G\to H$, which is continuous. Explicitly,
@@ -284,6 +350,13 @@
   \end{definition}
 
   \begin{definition}[Continuous group action]
+    Let $X$ be a topological space, and $G$ a topological group. Then we say the action of $G$ on 
+    $X$, 
+    $$\phi:G\times X\to X:(g,x)\mapsto g\cdot x,$$
+    is \textit{continuous} if $\phi^{-1}(U)$ is open in $G\times X$, with respect to the product 
+    topology, whenever $U$ is open in $X$. \\
+
+    We then call $X$ a \textit{$G$-space}.
   \end{definition}
 
 \subsection{Initial and Final Topologies}
@@ -299,7 +372,7 @@
     Given a family of topological spaces $Y_i$ indexed by $i\in I$, the \textit{initial topology} 
     with respect to the functions
     $$f_i:X\to Y_i$$
-    is the coursest topology that can be given to $X$ such that those functions are continuous.\\
+    is the coursest topology that can be given to $X$ such that those functions are continuous. \\
 
     Explicitly, it is the topology generated by taking all finite intersections and arbitrary unions of 
     sets of the form $f_i^{-1}(U_i)$, where $U_i$ is open in $Y_i$. Consider the following examples:
@@ -320,26 +393,26 @@
     topology with respect to the functions
     $$g_i:Y\to Z_i.$$
 
-    Let $f:X\to Y$. Then $f$ is continuous if and only if $g_i\circ f$ is continuous $\forall i\in I$.\\
+    Let $f:X\to Y$. Then $f$ is continuous if and only if $g_i\circ f$ is continuous $\forall i\in I$. \\
 
-    In other words, the following diagram is commutative for all $i\in I$:\\
+    In other words, the following diagram is commutative for all $i\in I$: \\
     \begin{center}
       \begin{tikzcd}
-        X \arrow{r}{f} \arrow[swap]{dr}{g_i\circ f} & Y \arrow{d}{g_i}\\
+        X \arrow{r}{f} \arrow[swap]{dr}{g_i\circ f} & Y \arrow{d}{g_i} \\
          & Z_i
       \end{tikzcd}
     \end{center}
   \end{theorem}
   
   \begin{proof}
-    Assume first that $f$ is continuous. Then since $g_i$ is continuous $\forall i\in I$, $g_i\circ f$ is continuous.\\
+    Assume first that $f$ is continuous. Then since $g_i$ is continuous $\forall i\in I$, $g_i\circ f$ is continuous. \\
 
     Now assume $g_i\circ f$ is continuous $\forall i\in I$. Let $U\subset Y$ be open in $Y$. Then $U$ is a finite intersection 
-    and arbitrary union of open sets of the form $g_i^{-1}(V_i)$, where each $V_i$ is open in $Z_i$.\\
+    and arbitrary union of open sets of the form $g_i^{-1}(V_i)$, where each $V_i$ is open in $Z_i$. \\
 
     Then $f^{-1}(U)$ is a finite intersection and arbitrary union of open sets of the form $f^{-1}(g_i^{-1}(V_i))=
     (g_i\circ f)^{-1}(V_i)$. This is equal to $(g_i\circ f)^{-1}(W_i)$, where $W_i$ is a finite intersection and arbitrary union 
-    of the open sets $V_i$.\\
+    of the open sets $V_i$. \\
 
     Then since each $W_i$ is open, and each $g_i\circ f$ is continuous, $(g_i\circ f)^{-1}(W_i)=f^{-1}(g_i^{-1}(W_i))$ is open in $X$.
     $g_i^{-1}(W_i)$ is a finite intersection and arbitrary union of $g_i^{-1}(V_i)$, which is open in $Y$. Hence $f^{-1}(U)$ is open in $X$.
@@ -349,7 +422,7 @@
     Given a family of topological spaces $X_i$ indexed by $i\in I$, the \textit{final topology} 
     with respect to the functions
     $$f_i:X_i\to Y$$
-    is the finest topology that can be given to $Y$ such that those functions are continuous.\\
+    is the finest topology that can be given to $Y$ such that those functions are continuous. \\
 
     Explicitly, a subset $U\subset Y$ is an element of the final topology if and only if 
     $f_i^{-1}(U)$ is open in $X_i$, $\forall i\in I$.
@@ -360,12 +433,12 @@
     topology with respect to the functions
     $$f_i:X_i\to Y$$
 
-    Then $g:Y\to Z$ is continuous if and only if $g\circ f_i$ is continuous $\forall i\in I$.\\
+    Then $g:Y\to Z$ is continuous if and only if $g\circ f_i$ is continuous $\forall i\in I$. \\
 
-    In other words, the following diagram is commutative $\forall i\in I$:\\
+    In other words, the following diagram is commutative $\forall i\in I$: \\
     \begin{center}
       \begin{tikzcd}
-        X_i \arrow{r}{f_i} \arrow[swap]{dr}{g\circ f_i} & Y \arrow{d}{g}\\
+        X_i \arrow{r}{f_i} \arrow[swap]{dr}{g\circ f_i} & Y \arrow{d}{g} \\
          & Z
       \end{tikzcd}
     \end{center}
@@ -395,7 +468,7 @@
     Let $U\subset Y$ be non-empty. Since $f$ is surjective, $f^{-1}(U)$ is non-empty. 
     Suppose $f^{-1}(U)$ is open in $X$. Then since $X\backslash f^{-1}(U)$ is closed and $X$ is compact, 
     $X\backslash f^{-1}(U)$ is compact. Then since $f$ is continuous, $f(X\backslash f^{-1}(U))$ 
-    is compact.\\
+    is compact. \\
     
     Then since $Y$ is Hausdorff, $f(X\backslash f^{-1}(U))=Y\backslash f(f^{-1}(U))=Y\backslash U$ is closed, 
     and hence $U$ is open, so $f$ is a quotient map.
@@ -414,9 +487,9 @@
     Let $X=\coprod_{i\in I}{X_i}$. For each $i\in I$, we define 
     $$\phi_i:X_i\to X:x\mapsto(x,i)$$
     to be the \textit{canonical injection}. Then we say $U$ is open in $X$ if and only if 
-    $\phi_i^{-1}(U)$ is open in $X_i$, $\forall i\in I$.\\
+    $\phi_i^{-1}(U)$ is open in $X_i$, $\forall i\in I$. \\
 
-    Equivalently, $U$ is open in $X$ if and only if $U\cap X_i$ is open in $X_i$, $\forall i\in I$.\\
+    Equivalently, $U$ is open in $X$ if and only if $U\cap X_i$ is open in $X_i$, $\forall i\in I$. \\
 
     Note that this topology is the finest topology on $X$ such that all of the canonical injections 
     $\phi_i$ are continuous. In other words, it is the final topology on $X$ with respect to the $\phi_i$.
@@ -428,7 +501,7 @@
     \item Let $A$ be a subset of a topological space $X$, and $q:A\to Y$ be a quotient map.
           We define an equivalence relation $\sim$ on $A$ by
           $$x\sim y \Leftrightarrow q(x)=q(y),\quad\forall x,y\in A.$$
-          Then we define $X\cup_q Y=\X.$\\
+          Then we define $X\cup_q Y=\X.$ \\
 
           If $Y$ is a singlet set, then we call this \textit{collapsing}, and 
           denote it $X/A$.
@@ -437,13 +510,24 @@
           $$X\cup_q Y=X\sqcup Y\,/\sim.$$
   \end{enumerate}
 
-\subsection{Lie Groups}
+\subsection{Manifolds}
 \label{sec:2.6}
 
+  \begin{definition}[Chart]
+    A \textit{chart}, $(U,\phi)$, for a topological space $X$ is an ordered pair of an open subset 
+    $U\subset X$ to an open subset of $R^n$.
+  \end{definition}
+
+  \begin{definition}[Atlas]
+    An \textit{atlas} of $X$ is a collection of charts $\{(U_i,\phi_i):i\in I\}$ such that
+    $$\bigcup_{i\in I}{U_i}=X.$$
+  \end{definition}
+
   \begin{definition}[Manifold]
-    An \textit{manifold}, $X$, of dimension $n$ is a topological space with is locally homeomorphic to $\R^n$. 
-    That is, $\forall x\in X$, there exists an open neighbourhood $U\subset X$ of $x$ such that there is a homeomorphism 
-    $$f:U\to\R^n.$$
+    If $\phi_i(U_i)=\R^n$ $\forall i\in I$, then $X$ is called an n-dimensional \textit{manifold}.
+  \end{definition}
+
+  \begin{definition}[Transition map]
   \end{definition}
 
   \begin{definition}[Lie group]

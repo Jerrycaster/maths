@@ -99,6 +99,24 @@
     $\|f(x)-f(a)\|<\epsilon$, whenever $\|x-a\|<\delta$.
   \end{definition}
 
+  Generally, we can think of continuous functions are those for which points that are `near' are mapped to 
+  by points that are also `near', and so showing that a function is continuous amounts to finding a positive
+  relationship between the definition of `nearness' in the domain and the definition of `nearness' in 
+  the range (these are not generally the same). In this 
+  case, points $x,y\in\R^n$ are near if the distance between them, $\|x-y\|$, is small. \\
+  
+  In a more general topological sense, we say that two points are near, in a certain capacity, 
+  if they are both elements of the same open set. Thus, very vaguely, the more open sets the points 
+  are both elements of, the nearer they are. In Euclidean space, open sets are defined as arbitary 
+  unions of open balls $B_\epsilon(x)$, for $x\in\R^n$ and $\epsilon>0$. Thus, $x=y$ precisely when 
+  $y\in B_\epsilon(x)$ (and $x\in B_\epsilon(y)$) $\forall\epsilon>0$. \\ 
+  
+  This is the Euclidean case of 
+  a general property called , which we use to describe 
+  points that both lie in every open set. Since they share every open set in common, their nearness 
+  is maximal, and so we can think of them as essentially being indistinguishable - i.e. the same point. 
+  We will revist this later, when we discuss seperatedness conditions.
+
   \begin{prop}
     For $f:A\to\R^m$, we write $f(x)=(f_1(x),\dots,f_m(x))$.\\
 
