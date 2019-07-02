@@ -1,4 +1,4 @@
-\documentclass[../summer.tex]{subfile}
+\documentclass[../research.tex]{subfile}
 
 \subsection{Quotients}
 \label{sec:2.1}
@@ -43,18 +43,18 @@
     $$\X=\{[x]:x\in X\}.$$
   \end{definition}
 
-  \begin{definition}[Quotient group]
-    Let $(G,+)$ be a group, and $N$ a normal subgroup of $G$. We define an equivalence relation 
+  \begin{example}[Quotient group]
+    Let $(G,+)$ be a group, and $N$ a normal subgroup of $G$, where we write $xy$ for $x+y$ $\forall x,y\in G$. We define an equivalence relation 
     $\sim$ on $G$ to be such that 
-    $$x\sim y\text{ if and only if }N+x=N+y.$$    
-    Then equivalence classes $[x]$ are the cosets of $N$ in $G$, $N+x=\{n+x:n\in N\}$, so the quotient set
-    $$\G=\{N+x:x\in G\}.$$
+    $$x\sim y\text{ if and only if }Nx=Ny.$$    
+    Then equivalence classes $[x]$ are the cosets of $N$ in $G$, $Nx=\{nx:n\in N\}$, so the quotient set
+    $$\G=\{Nx:x\in G\}.$$
     Equivalently, two elements of $G$ are equivalent if they lie in the same coset. 
     Then we define the \textit{quotient group} 
     $$\frac{G}{N}=(\G,+)$$
     where the binary operation $\cdot+\cdot:\frac{G}{N}\times\frac{G}{N}\to\frac{G}{N}$ is defined by 
-    $$(N+x)+(N+y)=N+(x+y).$$
-  \end{definition}
+    $$(Nx)(Ny)=N(xy).$$
+  \end{example}
 
   \begin{prop}
     $\frac{G}{N}$ is indeed a group under $+$.
@@ -63,28 +63,59 @@
   \begin{proof}
     We first check that $+$ is well-defined on $\frac{G}{N}$. \\
     
-    Suppose that $N+x=N+x'$, and $N+y=N+y'$. 
-    So $x-x'\in N$ and $y-y'\in N$. Then $(x-x')+(y-y')\in N$ this implies that $(x+y)-(x'+y')\in N$, 
+    Suppose that $Nx=Nx'$, and $Ny=Ny'$. 
+    So $xx'^{-1}\in N$ and $yy'^{-1}\in N$. Then $xx'^{-1}yy'^{-1}\in N$ this implies that $xy(x'y')^{-1}\in N$, 
     since $N$ is a normal subgroup.\\
 
-    Then $N+(x+y)=N+(x'+y')$, which implies that $(N+x)+(N+y)=(N+x')+(N+y')$.\\
+    Then $Nxy=Nx'y'$, which implies that $(Nx)(Ny)=(Nx')(Ny')$.\\
 
     So $+$ is well-defined. We now check the group axioms:
     \begin{enumerate}
       \item \textit{Closure}: Since $G$ is closed under $+$, $\frac{G}{N}$ is clearly closed under $+$.
       \item \textit{Associativity}: \begin{align*}
-                                      \forall x,y,z\in G, (N+x)+((N+y)+(N+z)) &= (N+x)+(N+(y+z)) \\
-                                                                              &= N+(x+(y+z)) \\
-                                                                              &= N+((x+y)+z) \\
-                                                                              &= (N+(x+y))+(N+z) \\
-                                                                              &= ((N+x)+(N+y))+(N+z)
+                                      \forall x,y,z\in G, (Nx)((Ny)(Nz)) &= (Nx)(N(yz)) \\
+                                                                              &= Nx(yz) \\
+                                                                              &= N(xy)z \\
+                                                                              &= (Nxy)(Nz) \\
+                                                                              &= ((Nx)(Ny))(Nz)
                                     \end{align*}
-      \item \textit{Identity}: $N$ is the identity. To see this, observe that $N+(N+x)=N+x=(N+x)+N$.
-      \item \textit{Inverses}: Given $N+x$, $-(N+x)=N+(-x)$. To see this, observe that $(N+x)+(N+(-x))=N=(N+(-x))+(N+x)$.
+      \item \textit{Identity}: $N$ is the identity. To see this, observe that $N(Nx)=Nx=(Nx)N$.
+      \item \textit{Inverses}: Given $Nx$, $(Nx)^{-1}=Nx^{-1}$. To see this, observe that $(Nx)(Nx^{-1})=N=(Nx^{-1})(Nx)$.
     \end{enumerate}
   \end{proof}
 
-  \begin{definition}[Quotient topology]
+  \begin{example}[Quotient ring]
+    Let $(R,+,\times)$ be a ring, and $I$ an ideal of $R$. We can define an equivalence relation, 
+    $\sim$, on $R$ by 
+    $$r\sim s\Longleftrightarrow I+r=I+s.$$
+    Then $(R/\sim,+,\times)$ forms a ring under $+$ and $\times$, called the \textit{quotient ring}, 
+    $R/I$. \\
+
+    We can construct the field of complex numbers, $\mathbb{C}$, by taking the following quotient: \\
+
+    Consider $I:=(x^2+1)\R[x]$ as an ideal of $\R[x]$. We define an equivalence relation $\sim$ on $\R[x]$ 
+    by 
+    $$f(x)\sim g(x)\Longleftrightarrow I+f(x)=I+g(x)\quad,\forall f(x),g(x)\in\R[x].$$
+    I claim that the quotient ring $\R[x]\,/\sim$,
+    $$\frac{\R[x]}{I}=\{a(I+x)+(I+b):a,b\in\R\}$$.
+    \begin{proof}
+      Fix a coset $I+p(x)$, $p(x)\in\R[x]$. Since $\R$ is a field, $\R[x]$ is a Euclidean domain, so 
+      $\exists q(x),r(x)\in\R[x]$, with $deg(r(x))<deg(x^2+1)=2$, or else $r(x)=0$, such that 
+      $$p(x)=q(x)(x^2+1)+r(x).$$
+      Then we write the quotient ring as 
+      \begin{align*}
+        \frac{\R[x]}{I} &=\{I+p(x):p(x)\in\R[x]\} \\
+                        &=\{I+q(x)(x^2+1)+r(x):deg(r)<2\} \\
+                        &=\{I+r(x):deg(r)<2\} \\
+                        &=\{I+(ax+b):a,b\in\R\} \\
+                        &=\{a(I+x)+(I+b):a,b\in\R\}
+      \end{align*}
+    \end{proof}
+    Note that $(I+x)^2=I+x^2=(I+x^2)+(I+1)-(I+1)=-(I+1)$. This is clearly isomorphic to $\mathbb{C}$, 
+    since $i^2=-1$ when we identify $i$ with $I+x$.
+  \end{example}
+
+  \begin{example}[Quotient topology]
     Let $(X,\tau_x)$ be a topological space, $Y$ a set, and $f:X\to Y$ a surjective function. Then a subset 
     $U\subset Y$ is open in $Y$ if and only if $f^{-1}(U)$ is open in $X$. In other words, this 
     topology, called the \textit{quotient topology}, is the finest topology we can define on $Y$ such 
@@ -96,7 +127,7 @@
     Then $(\X,\tau)$ is a topological space, where the quotient topology, $\tau$, is defined by
     $$\tau=\{U\in \X:p^{-1}(U)\in\tau_X\}.$$
     Note that $\tau$ is the final topology on $\X$ with respect to $p$.
-  \end{definition}
+  \end{example}
 
   \begin{definition}[Separateness conditions]
     \verb%%
@@ -227,11 +258,11 @@
   $$\phi:G\to\Aut{X}.$$
   Which amounts to assigning an automorphism of $X$ to each element of $G$ in such a way that
   \begin{enumerate}
-    \item The identity transformation in $\Aut{X}$ is assigned to the identity in $G$,
-    \item The composition of the permutations assigned to two elements $g,h\in G$ is assigned to 
+    \item The identity automorphism in $\Aut{X}$ is assigned to the identity in $G$,
+    \item The composition of the two automorphisms assigned to two elements $g,h\in G$ is assigned to 
           the product $gh$.
   \end{enumerate}
-  Since $\text{Im}(\phi)$ is a subgroup of $\Aut{X}$, we define the action of $G$ on $X$ by 
+  Since $\phi(G)$ is a subgroup of $\Aut{X}$, we define the action of $G$ on $X$ by 
   the group action of the homomorphic image of $G$, in $\Aut{X}$, on $X$. Specifically:
 
   \begin{definition}[Group action]
@@ -372,7 +403,10 @@
     Given a family of topological spaces $Y_i$ indexed by $i\in I$, the \textit{initial topology} 
     with respect to the functions
     $$f_i:X\to Y_i$$
-    is the coursest topology that can be given to $X$ such that those functions are continuous. \\
+    is that in which open sets $U\subset X$ are those for which $f_i(U)$ is open in $Y_i$ $\forall i\in I$. 
+    If $X$ already has a topology, then these functions are continuous if and only if the existing 
+    topology is finer than the initial topology. Thus, the initial topology is the coursest topology that 
+    can be defined on $X$ such that these functions are continuous. \\
 
     Explicitly, it is the topology generated by taking all finite intersections and arbitrary unions of 
     sets of the form $f_i^{-1}(U_i)$, where $U_i$ is open in $Y_i$. Consider the following examples:
@@ -386,6 +420,9 @@
             the canonical projections 
             $$p_i:X\to X_i\quad\forall i\in I.$$
     \end{enumerate}
+
+    If $f$ is injective, the initial topology can be identified with the \textit{subspace} topology of 
+    $X$, when $X$ is viewed as a subset of $Y_i$.
   \end{definition}
 
   \begin{theorem}[Characteristic property of initial topologies]
@@ -422,10 +459,14 @@
     Given a family of topological spaces $X_i$ indexed by $i\in I$, the \textit{final topology} 
     with respect to the functions
     $$f_i:X_i\to Y$$
-    is the finest topology that can be given to $Y$ such that those functions are continuous. \\
+    is that in which open sets $A\subset Y$ are those for which $f_i^{-1}(U)$ is open in $X_i$ $\forall
+    i\in I$. If $Y$ already has a topology, the $f_i$ are continuous precisely when the existing 
+    topology is \textit{courser} than the final topology on $Y$. Thus, the final topology is the finest 
+    topology that can be given to $Y$ such that these functions are continuous. \\
 
-    Explicitly, a subset $U\subset Y$ is an element of the final topology if and only if 
-    $f_i^{-1}(U)$ is open in $X_i$, $\forall i\in I$.
+    If each $f_i$ is surjective, we call this topology the \textit{quotient topology} under the equivalence 
+    relation $\sim$ defined by
+    $$x\sim y\Longleftrightarrow f_i^{-1}(\{x\})=f_i^{-1}(\{y\})\quad\forall x,y\in X_i,\,i\in I.$$
   \end{definition}
 
   \begin{theorem}[Universal property of final topologies]

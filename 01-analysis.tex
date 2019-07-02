@@ -1,4 +1,4 @@
-\documentclass[../summer.tex]{subfile}
+\documentclass[../research.tex]{subfile}
 
 \subsection{Sequences}
 \label{sec:1.1}
@@ -112,7 +112,7 @@
   $y\in B_\epsilon(x)$ (and $x\in B_\epsilon(y)$) $\forall\epsilon>0$. \\ 
   
   This is the Euclidean case of 
-  a general property called , which we use to describe 
+  a general property called non-seperatedness, which we use to describe 
   points that both lie in every open set. Since they share every open set in common, their nearness 
   is maximal, and so we can think of them as essentially being indistinguishable - i.e. the same point. 
   We will revist this later, when we discuss seperatedness conditions.
@@ -271,9 +271,143 @@
                  &<\frac{\epsilon'}{2}+\frac{\epsilon'}{2}\\
                  &=\epsilon'
     \end{align*}
-    
   \end{proof}
 
   \begin{theorem}[Heine-Borel]
     Let $A\subset\R^n$ be closed and bounded. Then $A$ is compact.
   \end{theorem}
+
+  \begin{definition}[Uniform convergence]
+    Let $A\subset\R^n$ and $(f_i)_{i\in\N}$ be a sequence of functions $f_i:A\to\R^m.$ \\
+
+    We say $f_i\to f$ \textit{uniformly} to $f:A\to\R^m$ if and only if $\forall\epsilon>0$, 
+    $\exists N\in\N$ such that $\|f_i(x)-f(x)\|<\epsilon$ whenever $i\geq N$ and $x\in A$.
+  \end{definition}
+
+  \begin{theorem}
+    Let $A\subset\R^n$ and $(f_i)_{i\in\N}$ be a sequence of functions $f_i:A\to\R^m$ which 
+    converges uniformly to $f:A\to\R^m$ uniformly. \\
+    
+    Then if $f_i$ is uniformly continuous $\forall i\in\N$, $f$ is uniformly continuous.
+  \end{theorem}
+
+  \begin{proof}
+    Fix $\epsilon>0$. Then since $f_i\to f$ uniformly, $\exists N\in\N$ such that 
+    $\|f_i(x)-f(x)\|<\epsilon/3$ whenever $i\geq N$ and $x\in A$. \\
+
+    Also since each $f_i$ is uniformly continuous, $\exists\delta>0$ such that $\|f_i(x)-f_i(y)\|$ 
+    $\forall x,y\in A$. Then using the triangle inequality:
+    \begin{align*}
+      \|f(x)-f(y)\| &\leq\|f(x)-f_i(x)\|+\|f_i(x)-f(y)\| \\
+                    &<\epsilon/3+\|f_i(x)-f_i(y)\|+\|f_i(y)-f(y)\| \\
+                    &<\epsilon/3+\epsilon/3+\epsilon/3 \\
+                    &=\epsilon
+    \end{align*}
+    $\forall x,y\in A$ such that $\|x-y\|<\delta$. Hence, $f$ is uniformly continuous.
+  \end{proof}
+
+  \begin{cor}
+    Now assume that each $f_i$ is just continuous instead. Then $f$ is continuous.
+  \end{cor}
+
+  \begin{proof}
+    Fix $a\in A$, and $\epsilon>0$. Then since $f_i\to f$ uniformly, $\exists N\in\N$ such that 
+    $\|f_i(x)-f(x)\|<\epsilon/3$ whenever $i\geq N$ and $x\in A$.\\
+
+    Also since each $f_i$ is continuous, $\exists\delta>0$ such that $\|f_i(x)-f_i(a)\|<\epsilon/3$ 
+    $\forall x\in A$. Then using the triangle inequality:
+    \begin{align*}
+      \|f(x)-f(a)\| &\leq\|f(x)-f_i(x)\|+\|f_i(x)-f(a)\| \\
+                    &<\epsilon/3+\|f_i(x)-f_i(a)\|+\|f_i(a)-f(a)\| \\
+                    &<\epsilon/3+\epsilon/3+\epsilon/3 \\
+                    &=\epsilon
+    \end{align*}
+    $\forall x\in A$ such that $\|x-a\|<\delta$. Hence, $f$ is continuous.
+  \end{proof}
+
+\subsection{Integration}
+\label{sec:1.4}
+
+  \begin{definition}[Partitions]
+    Let $[a,b]\subset\R$. We define a \textit{partition}, $\mathcal{P}$, of $[a,b]$ by an ordered tuple
+    $$\mathcal{P}=(x_0,x_1,\dots,x_{k-1},x_k),$$
+    such that $a=x_0<x_1<\dots<x_{k-1}<x_k=b$. \\
+
+    We call any interval of the form $[x_j,x_{j+1}]$ a \textit{subinterval} of the partition $\mathcal{P}$. 
+    The length of this subinterval is $\Delta x_j=x_{j+1}-x_j$, and we define 
+    $$\text{mesh}(\mathcal{P}):=\max_{j=0,\dots,k-1}{\Delta x_j}.$$ \\
+
+    Finally, for any two partitions $\mathcal{P}$ and $\mathcal{Q}$, we say $\mathcal{Q}$ \textit{refines} 
+    $\mathcal{P}$ iff every point in $\mathcal{P}$ lies in $\mathcal{Q}$.
+  \end{definition}
+
+  \begin{definition}[Darboux sums]
+    Let $f:[a,b]\to\R$ be bounded, and fix a partition $\mathcal{P}$ of $[a,b]$. Then we define the 
+    \textit{upper} and \textit{lower Darboux sums} by
+    $$U(f,\mathcal{P})=\sum_{j=0}^{k-1}M_j\Delta x_j,$$
+    where $M_j=\sup_{x\in[x_j,x_{j+1}]}{f(x)}$, and
+    $$L(f,\mathcal{P})=\sum_{j=0}^{k-1}m_j\Delta x_j,$$
+    where $m_j=\inf_{x\in[x_j,x_{j+1}]}{f(x)}$.  
+  \end{definition}
+
+  \begin{lemma}
+    Let $A\subset\R^n$ and $f,g:A\to\R$ be bounded. Then 
+    \begin{enumerate}
+      \item $\sup_{x\in A}{-f(x)}=-\inf_{x\in A}{f(x)}$
+      \item $\inf_{x\in A}{-f(x)}=-\sup_{x\in A}{f(x)}$
+    \end{enumerate}
+  \end{lemma}
+
+  %\begin{proof}
+  %  \begin{enumerate}
+  %    \item 
+  %  \end{enumerate}
+  %\end{proof}
+
+  \begin{lemma}
+    Let $\mathcal{P}$ and $\mathcal{Q}$ be partitions of $[a,b]$, with $\mathcal{Q}$ a refinement of 
+    $\mathcal{P}$. Then
+    $$L(f,\mathcal{P})\leq L(f,\mathcal{Q})\leq U(f,\mathcal{Q})\leq U(f,\mathcal{P}).$$
+  \end{lemma}
+
+  \begin{proof}
+    Let $\mathcal{Q}=(x_0=a,x_1,\dots,x_k=b)$. Let $I_j$ be the subinterval of $\mathcal{P}$ 
+    containing $[x_j,x_{j+1}]$, for $j=0,\dots,k-1$. Then 
+    $$\inf_{x\in I_j}{f(x)}\leq\inf_{x\in [x_j,x_{j+1}]}{f(x)}\leq\sup_{x\in [x_j,x_{j+1}]}{f(x)}
+    \leq\sup_{x\in I_j}{f(x)}.$$
+    Then by multiplying by $\Delta x_j$ and summing over $j$, we get
+    $$\sum_{j=0}^{k-1}{\Delta x_j\inf_{x\in I_j}{f(x)}}\leq\sum_{j=0}^{k-1}{\Delta x_j m_j}
+    \leq\sum_{j=0}^{k-1}{\Delta x_j M_j}\leq\sum_{j=0}^{k-1}{\Delta x_j\sup_{x\in I_j}{f(x)}}.$$
+    We can rewrite the two outer sums as 
+    $$\sum_{j=0}^{k-1}{\Delta x_j\inf_{x\in I_j}{f(x)}}=\sum_{\text{subints. of }\mathcal{P}
+    \text{, }I}{\bigg[\inf_{x\in I}{f(x)}}\sum_{j\text{ s.t. }I=I_j}{\Delta x_j}\bigg]=L(f,\mathcal{P}),$$
+    $$\sum_{j=0}^{k-1}{\Delta x_j\sup_{x\in I_j}{f(x)}}=\sum_{\text{subints. of }\mathcal{P}
+    \text{, }I}{\bigg[\sup_{x\in I}{f(x)}}\sum_{j\text{ s.t. }I=I_j}{\Delta x_j}\bigg]=U(f,\mathcal{P}).$$
+    Hence,
+    $$L(f,\mathcal{P})\leq L(f,\mathcal{Q})\leq U(f,\mathcal{Q})\leq U(f,\mathcal{P}).$$
+  \end{proof}
+
+  \begin{cor}
+    $$L(f,\mathcal{P})\leq U(f,\mathcal{P'})$$
+    for any two partitions $\mathcal{P}$ and $\mathcal{P'}$.
+  \end{cor}
+
+  \begin{proof}
+    Let $\mathcal{Q}$ be a common refinement of $\mathcal{P}$ and $\mathcal{P'}$. Then 
+    $$L(f,\mathcal{P})\leq L(f,\mathcal{Q})\leq U(f,\mathcal{Q})\leq U(f,\mathcal{P'}).$$    
+  \end{proof}
+
+  \begin{definition}[Darboux integrals]
+    We define the following sets:
+    \begin{align*}
+      U_f&=\{U(f,\mathcal{P'}):\mathcal{P'}\text{ is a partition of }[a,b]\}, \\
+      \text{and }L_f&=\{L(f,\mathcal{P}):\mathcal{P}\text{ is a partition of }[a,b]\}.
+    \end{align*}
+    Let $\mathcal{Q}$ be any parition of $[a,b]$. Then $U_f$ is bounded below by $L(f,\mathcal{Q})$ and $L_f$ is 
+    bounded above by $U(f,\mathcal{Q})$. Thus we can define \textit{upper} and \textit{lower Darboux 
+    integrals} by:
+    $$\overline{\int_a^b}f(x)\text{d}x=\inf{U_f},$$
+    $$\underline{\int_a^b}f(x)\text{d}x=\sup{L_f}.$$
+    If these two are equal, then we say $f$ is \textit{integrable}, and we let 
+    $$\int_a^bf(x)\text{d}x=\overline{\int_a^b}f(x)\text{d}x=\underline{\int_a^b}f(x)\text{d}x.$$
+  \end{definition}
