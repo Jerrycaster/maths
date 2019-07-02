@@ -6,28 +6,28 @@
   We denote set of positive integers as $\N$.
 
   \begin{prop}
-    Let $a_i = (a_i^1,\ldots,a_i^n)\in\R^n$ be a sequence,  $\forall n\in\N$. Then $a_i\to a:=(a^1,\ldots,a^n)\in\R^n$, as $i\to\infty$ iff 
-    $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\ldots,n\}$.
+    Let $a_i = (a_i^1,\dots,a_i^n)\in\R^n$ be a sequence,  $\forall n\in\N$. Then $a_i\to a:=(a^1,\dots,a^n)\in\R^n$, as $i\to\infty$ iff 
+    $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\dots,n\}$.
   \end{prop}
 
   \begin{proof}
     We know that 
-    $$\max_{k=1,\ldots,n}{|a^k|}\leq\|a\|\leq\sqrt{n}\max_{k=1,\ldots,n}{|a^k|}.$$
+    $$\max_{k=1,\dots,n}{|a^k|}\leq\|a\|\leq\sqrt{n}\max_{k=1,\dots,n}{|a^k|}.$$
 
     To show this, observe that:
-    $$\sqrt{\max_k{((a^k)}^2)}\leq\sqrt{(a^1)^2+\ldots+(a^n)^2}\leq\sqrt{n\max_k{((a^k)^2})}$$
+    $$\sqrt{\max_k{((a^k)}^2)}\leq\sqrt{(a^1)^2+\dots+(a^n)^2}\leq\sqrt{n\max_k{((a^k)^2})}$$
     $$\Rightarrow \sqrt{(\max_k{|a^k|})^2}\leq\|x\|\leq\sqrt{n(\max_k{|a^k|})^2}$$
     $$\Rightarrow \max_k{|a^k|}\leq\|x\|\leq\sqrt{n}\max_k{|a^k|}$$
     
     First assume that $a_i\to a$ as $i\to\infty$. Then $\forall\epsilon>0$ $\exists N\in\N$ such that 
     $\|a_i-a\|<\epsilon$ whenever $i\geq N$. \\
 
-    Then $\forall k=1\ldots n$, $|a^k_i-a^k|\leq\max_k{|a^k_i-a^k|}\leq\|a_i-a\|<\epsilon$ whenever $i\geq N$, 
+    Then $\forall k=1\dots n$, $|a^k_i-a^k|\leq\max_k{|a^k_i-a^k|}\leq\|a_i-a\|<\epsilon$ whenever $i\geq N$, 
     so $a^k_i\to a^k$ as $i\to\infty$.\\
 
-    Conversely, assume that $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\ldots,n\}$.
-    Then $\forall\epsilon>0$, $\exists N^k\in\N$ such that $|a_i^k-a^k|\leq\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N^k$, $\forall k=1,\ldots,n$. Let 
-    $$N=\max_{k=1,\ldots,n}{N^k}.$$
+    Conversely, assume that $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\dots,n\}$.
+    Then $\forall\epsilon>0$, $\exists N^k\in\N$ such that $|a_i^k-a^k|\leq\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N^k$, $\forall k=1,\dots,n$. Let 
+    $$N=\max_{k=1,\dots,n}{N^k}.$$
 
     Then $\max_k{|a^k_i-a^k|}<\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N$, so $\|a_i-a\|\leq\sqrt{n}\max_k{|a^k_i-a^k|}<\epsilon$.
   \end{proof}
@@ -64,8 +64,8 @@
     In the first case, we have an infinite subsequence, $(x_{i_j})_{j\in\mathbb{N}}$, of peak points which is non-increasing, 
     since $a_{i_n}\leq x_{i_j}$ whenever $n>j$. Then since $(a_i)$ is bounded, so is $(x_{i_j})$, so it is convergent.\\
 
-    Now consider the case of finitely many peak points, say $x_1,\ldots x_k$. Choose 
-    $n_1>\text{max}\{1,\ldots,k\}$. Since $a_{n_1}$ is not a peak point, $\exists n_2 > n_1$ such that 
+    Now consider the case of finitely many peak points, say $x_1,\dots x_k$. Choose 
+    $n_1>\text{max}\{1,\dots,k\}$. Since $a_{n_1}$ is not a peak point, $\exists n_2 > n_1$ such that 
     $a_{n_2}>a_{n_1}$. Since $a_{n_2}$ is not a peak point, $\exists n_3 > n_2$ such that 
     $a_{n_3}>a_{n_2}$. Continuing inductively, with $a_{n_i}>a_{n_{i-1}}$, we obtain a decreasing subsequence 
     $(a_{n_j})_{j\in\N}$. Then since $(a_{n_j})_{j\in\N}$ is bounded, it converges.
