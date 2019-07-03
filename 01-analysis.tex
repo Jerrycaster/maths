@@ -6,8 +6,9 @@
   We denote set of positive integers as $\N$.
 
   \begin{prop}
-    Let $a_i = (a_i^1,\dots,a_i^n)\in\R^n$ be a sequence,  $\forall n\in\N$. Then $a_i\to a:=(a^1,\dots,a^n)\in\R^n$, as $i\to\infty$ iff 
-    $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\dots,n\}$.
+    Let $a_i = (a_i^1,\dots,a_i^n)\in\R^n$ be a sequence,  $\forall n\in\N$. Then 
+    $a_i\to a:=(a^1,\dots,a^n)\in\R^n$, as $i\to\infty$ iff $a_i^k\to a^k$ as $i\to\infty$, 
+    $\forall k\in\{1,\dots,n\}$.
   \end{prop}
 
   \begin{proof}
@@ -19,17 +20,19 @@
     $$\Rightarrow \sqrt{(\max_k{|a^k|})^2}\leq\|x\|\leq\sqrt{n(\max_k{|a^k|})^2}$$
     $$\Rightarrow \max_k{|a^k|}\leq\|x\|\leq\sqrt{n}\max_k{|a^k|}$$
     
-    First assume that $a_i\to a$ as $i\to\infty$. Then $\forall\epsilon>0$ $\exists N\in\N$ such that 
-    $\|a_i-a\|<\epsilon$ whenever $i\geq N$. \\
+    First assume that $a_i\to a$ as $i\to\infty$. Then $\forall\epsilon>0$ $\exists N\in\N$ such 
+    that $\|a_i-a\|<\epsilon$ whenever $i\geq N$. \\
 
-    Then $\forall k=1\dots n$, $|a^k_i-a^k|\leq\max_k{|a^k_i-a^k|}\leq\|a_i-a\|<\epsilon$ whenever $i\geq N$, 
-    so $a^k_i\to a^k$ as $i\to\infty$.\\
+    Then $\forall k=1\dots n$, $|a^k_i-a^k|\leq\max_k{|a^k_i-a^k|}\leq\|a_i-a\|<\epsilon$ whenever 
+    $i\geq N$, so $a^k_i\to a^k$ as $i\to\infty$.\\
 
     Conversely, assume that $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\dots,n\}$.
-    Then $\forall\epsilon>0$, $\exists N^k\in\N$ such that $|a_i^k-a^k|\leq\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N^k$, $\forall k=1,\dots,n$. Let 
+    Then $\forall\epsilon>0$, $\exists N^k\in\N$ such that $|a_i^k-a^k|\leq\frac{\epsilon}{\sqrt{n}}$ 
+    whenever $i\geq N^k$, $\forall k=1,\dots,n$. Let 
     $$N=\max_{k=1,\dots,n}{N^k}.$$
 
-    Then $\max_k{|a^k_i-a^k|}<\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N$, so $\|a_i-a\|\leq\sqrt{n}\max_k{|a^k_i-a^k|}<\epsilon$.
+    Then $\max_k{|a^k_i-a^k|}<\frac{\epsilon}{\sqrt{n}}$ whenever $i\geq N$, so 
+    $\|a_i-a\|\leq\sqrt{n}\max_k{|a^k_i-a^k|}<\epsilon$.
   \end{proof}
 
   \begin{prop}
@@ -52,33 +55,74 @@
     And since $\epsilon$ can be made arbitrarily small, we find that $a=b$, which is a contradiction.
   \end{proof}
 
-
-  \begin{theorem}[Bolzano-Weierstrass]
-    Let $(a_n)_{n\in\N}$ be a bounded sequence of real numbers. Then $(a_n)_n\in\N$ has a convergent subsequence.
+  \begin{theorem}[Monotone convergence]
+    An increasing and bounded above sequence is convergent. Likewise, a decreasing and bounded below 
+    sequence is convergent.
   \end{theorem}
 
   \begin{proof}
-    We say $x_i$ is a peak point of $(a_n)$ if $a_n\leq x_i, \forall n>i$.\\
+    Suppose $(a_i)$ is bounded above and increasing. Then the set $A=\{a_i:i\in\N\}$ has a supremum, 
+    say $a=\sup{A}$. I claim that $a_i\to a$ as $i\to\infty$. \\
 
-    Then either we have infinitely many peak points, or finitely many.
-    In the first case, we have an infinite subsequence, $(x_{i_j})_{j\in\mathbb{N}}$, of peak points which is non-increasing, 
-    since $a_{i_n}\leq x_{i_j}$ whenever $n>j$. Then since $(a_i)$ is bounded, so is $(x_{i_j})$, so it is convergent.\\
+    \textit{Proof of claim.}
+      Fix $\eps$. Then $\exists a_N$, with $N\in\N$ such that 
+      $$a-\epsilon<a_N\leq a<a+\epsilon.$$
+      Since $(a_i)$ is increasing, $a_i\geq a_N$ when $i\geq N$, and since it is also bounded above 
+      by $a$, we have 
+      $$a-\epsilon<a_N\leq a\leq a_i<a+\epsilon,$$
+      and so 
+      $$|a-a_i|<\epsilon.$$
+    So $a_i\to a$ as $i\to\infty$. Simililary, we can show that if $(a_i)$ is bounded below and 
+    decreasing, $a_i\to \inf{\{a_i:i\in\N\}}$ as $i\to\infty$.
+  \end{proof}
 
-    Now consider the case of finitely many peak points, say $x_1,\dots x_k$. Choose 
-    $n_1>\text{max}\{1,\dots,k\}$. Since $a_{n_1}$ is not a peak point, $\exists n_2 > n_1$ such that 
-    $a_{n_2}>a_{n_1}$. Since $a_{n_2}$ is not a peak point, $\exists n_3 > n_2$ such that 
-    $a_{n_3}>a_{n_2}$. Continuing inductively, with $a_{n_i}>a_{n_{i-1}}$, we obtain a decreasing subsequence 
-    $(a_{n_j})_{j\in\N}$. Then since $(a_{n_j})_{j\in\N}$ is bounded, it converges.
+  \begin{lemma}
+    Let $(a_n)_{n\in\N}$ be a bounded sequence of real numbers. Then $(a_n)_{n\in\N}$ has a convergent 
+    subsequence.
+  \end{lemma}
+%
+%  \begin{proof}
+%    We say $x_i$ is a peak point of $(a_n)$ if $a_n\leq x_i, \forall n>i$.\\
+%
+%    Then either we have infinitely many peak points, or finitely many.
+%    In the first case, we have an infinite subsequence, $(x_{i_j})_{j\in\mathbb{N}}$, of peak points 
+%    which is non-increasing, since $a_{i_n}\leq x_{i_j}$ whenever $n>j$. Then since $(a_i)$ is 
+%    bounded, so is $(x_{i_j})$, so it is convergent.\\
+%
+%    Now consider the case of finitely many peak points, say $x_1,\dots x_k$. Choose 
+%    $n_1>\text{max}\{1,\dots,k\}$. Since $a_{n_1}$ is not a peak point, $\exists n_2 > n_1$ such 
+%    that $a_{n_2}>a_{n_1}$. Since $a_{n_2}$ is not a peak point, $\exists n_3 > n_2$ such that 
+%    $a_{n_3}>a_{n_2}$. Continuing inductively, with $a_{n_i}>a_{n_{i-1}}$, we obtain a decreasing 
+%    subsequence $(a_{n_j})_{j\in\N}$. Then since $(a_{n_j})_{j\in\N}$ is bounded, it converges.
+%  \end{proof}
+%
+%  We now present another proof.
+%
+  \begin{proof}
+    Since $(a_i)$ is bounded, $\exists K\geq0$ such that $a_i\in I_0:=[-K,K]\,\forall i\in\N$.
+    Then one of $[-K,0]$, $[0,K]$ contains infinitely many elements of $(a_i)$. Choose the 
+    leftmost one, and call it $I_1$. Repeat this inductively, such that $I_j:=[c_j,d_j]$ 
+    contains infinitely many elements of $(a_i)$. We then inductively define 
+    $$i_j=\min_{i>i_{j-1}}{i:a_i\in I_j}.$$
+    In other words, $a_{i_j}$ is the first element of $(a_i)$ which lies in $I_j$. Now, since 
+    $$I_j\subset I_{j-1}\subset\dots\subset I_1\subset I_0,$$
+    The sequences $(c_j)$ and $(d_j)$ are monotically increasing and decreasing, respectively, 
+    and since they are bounded, they both converge, so say that 
+    $$c_j\to c\in[-K,K]\text{ as }j\to\infty,$$
+    $$d_j\to d\in[-K,K]\text{ as }j\to\infty.$$
+    Since $d_j-c_j=\text{length}(I_j)=2^{1-j}K\to0$ as $j\to\infty$, we have that $c=d$, and 
+    since $c_j\leq a_{i_j}\leq d_j$, we also have that $a_{i_j}\to c=d$ as $j\to\infty$.   
   \end{proof}
 
   \begin{cor}
-    Let $(a_i)_{i\in\N}$ be a bounded sequence, with $a_i\in\R^n\forall n\in\N$. Then $(a_i)$ has a convergent subsequence.
+    Let $(a_i)_{i\in\N}$ be a bounded sequence in $\R^n$. Then $(a_i)$ has a 
+    convergent subsequence.
   \end{cor}
   \begin{proof}
     Since $(a_i)$ is bounded, and the component sequences $(a_i^k)$ are bounded $\forall k=1,\dots,n$.\\
 
-    Then by Bolzano-Weierstrass, $(a_i^1),\dots,(a_i^n)$ have subsequences $(a_{i_{j_1}}^1), \dots, (a_{i_{j_n}}^n)$ 
-    converging to $a^1,\dots,a^n$ respectively. Let 
+    Then by the previous lemma, $(a_i^1),\dots,(a_i^n)$ have subsequences $(a_{i_{j_1}}^1), \dots, 
+    (a_{i_{j_n}}^n)$ converging to $a^1,\dots,a^n$ respectively. Let 
     \begin{align*}
       J_1&=\{j_{1_1},j_{1_2},\dots\},\\
       J_2&=\{j_{2_1},j_{2_2},\dots\},\\
@@ -87,7 +131,19 @@
     \end{align*}
     and $J=J_1\cap\dots\cap J_n$.\\
 
-    Then each component subsequence $(a_j^k)_{j\in J}$ converges to $a^k$, so $(a_j)_{j\in J}$ converges to $a$.
+    Then each component subsequence $(a_j^k)_{j\in J}$ converges to $a^k$, so $(a_j)_{j\in J}$ 
+    converges to $a$.
+  \end{proof}
+
+  \begin{theorem}[Bolzano-Weierstrass]
+    Let $E\subset\R^n$ be compact and $(a_i)_{i\in\N}$ a sequence in $E$. Then $(a_i)$ has a 
+    subsequence converging to a point in $E$.
+  \end{theorem}
+
+  \begin{proof}
+    Since $(a_i)$ is bounded, it has a subsequence $(a_{i_j})\to a$ as $j\to\infty$. \\
+
+    And since $E$ is closed, and $a$ a limit point of $E$, $a\in E$.
   \end{proof}
 
 \subsection{Continuous Functions}
@@ -157,21 +213,22 @@
   \end{prop}
 
   \begin{proof}
-    Let $(x_i)$ be a sequence in $A$ converging to $x\in A$, and assume $f:A\to\R^m$ to be continuous at $x$.
-    Then $\forall\epsilon>0$, $\exists\delta>0$ such that $\|f(x)-f(y)\|<\epsilon$ 
+    Let $(x_i)$ be a sequence in $A$ converging to $x\in A$, and assume $f:A\to\R^m$ to be continuous 
+    at $x$. Then $\forall\epsilon>0$, $\exists\delta>0$ such that $\|f(x)-f(y)\|<\epsilon$ 
     whenever $0<\|x-y\|<\delta$.\\
 
     Since $x_i\to x$, $\nat$ such that $\|x_i-x\|<\delta$ whenever $i\geq N$, and hence $\|f(x_i)-f(x)\|<\epsilon$, 
     so we have that $f(x_i)\to f(x)$ as $i\to\infty$.\\
 
-    Now assume the converse holds, and for a contradiction that $f$ is not continuous. Then $\exists\epsilon>0$ 
-    such that $\forall\delta>0$ $\|f(x)-f(x_i)\|\geq\epsilon$ whenever $0<\|x-x_i\|<\delta$, 
-    and in particular whenever $0<\|x-x_i\|<\frac{1}{i}$, $\forall i\in\N$.\\
+    Now assume the converse holds, and for a contradiction that $f$ is not continuous. Then 
+    $\exists\epsilon>0$ such that $\forall\delta>0$ $\|f(x)-f(x_i)\|\geq\epsilon$ whenever 
+    $0<\|x-x_i\|<\delta$, and in particular whenever $0<\|x-x_i\|<\frac{1}{i}$, $\forall i\in\N$.\\
 
-    Then the sequence $(x_i)$ converges to $x$, so by assumption the image sequence $(f(x_i))$ converges to $f(x)$.\\
+    Then the sequence $(x_i)$ converges to $x$, so by assumption the image sequence $(f(x_i))$ 
+    converges to $f(x)$.\\
 
-    Thus $\exists N\in\N$ such that $\|f(x_i)-f(x)\|<\epsilon$ whenever $i\geq N$, which is a contradiction.
-    Hence, $f$ is continuous at $x$.
+    Thus $\exists N\in\N$ such that $\|f(x_i)-f(x)\|<\epsilon$ whenever $i\geq N$, which is a 
+    contradiction. Hence, $f$ is continuous at $x$.
   \end{proof}
 
   \begin{theorem}[Extreme Value Theorem]
@@ -206,8 +263,8 @@
     So $f(x_i)\to-\infty$ as $i\to\infty$.\\
 
     Now, the sequence $(x_i)_{i\in\N}$ is bounded. Then by the Bolzano-Weierstrass theorem it has a 
-    subsequence $(x_{i_j})_{j\in\N}$ convergent to $x\in E$. Since $f$ is continuous at $x$, $f(x_{i_j})\to f(x)$ as $j\to\infty$, 
-    and so $f(x)\in E$ (so $f(x)$ is finite). This is a contraction since 
+    subsequence $(x_{i_j})_{j\in\N}$ convergent to $x\in E$. Since $f$ is continuous at 
+    $x$, $f(x_{i_j})\to f(x)$ as $j\to\infty$, and so $f(x)\in E$ (so $f(x)$ is finite). This is a contraction since 
     $f$ was assumed to diverge to negative infinity for any subsequence of $(x_i)$, including $(x_{i_j})$.\\
 
     So $f$ is bounded below on $E$. Now by completeness of $\R$, $f(E)$ has an infimum, say 
@@ -411,3 +468,133 @@
     If these two are equal, then we say $f$ is \textit{integrable}, and we let 
     $$\int_a^bf(x)\text{d}x=\overline{\int_a^b}f(x)\text{d}x=\underline{\int_a^b}f(x)\text{d}x.$$
   \end{definition}
+
+  \begin{prop}
+    A bounded function $f:[a,b]\to\R$ is integrable if and only if $\eps$ there exists a partition 
+    $\calP$ of $[a,b]$ such that
+    $$U(f,\calP)-L(f,\calP)<\epsilon.$$
+  \end{prop}
+
+  \begin{proof}
+    We assume that $\eps$ there exists a partition $\calP$ of $[a,b]$ such that $U(f,\calP)-
+    L(f,\calP)<\epsilon.$ Then
+    $$L(f,\calP)\leq\underline{\int_a^b}f(x)\text{d}x\leq\overline{\int_a^b}f(x)\text{d}x\leq U(f,\calP),$$
+    so 
+    $$\overline{\int_a^b}f(x)\text{d}x-\underline{\int_a^b}f(x)\text{d}x\leq U(f,\calP)-L(f,\calP)<\epsilon,$$
+    and so 
+    $$\overline{\int_a^b}f(x)\text{d}x=\underline{\int_a^b}f(x)\text{d}x$$
+    so $f$ is integrable. \\
+
+    Conversely, assume that $f$ is integrable. Fix $\eps$. Then since $\lowint=\sup{L_f}$ and 
+    $\upint=\inf{U_f}$, $\exists\calP,\calP'$ as parititions of $[a,b]$, such that 
+    $$\lowint\geq L(f,\calP)>\lowint-\frac{\epsilon}{2},$$
+    $$\upint\leq U(f,\calP')<\upint+\frac{\epsilon}{2}.$$
+    Since $f$ is integrable, this simplifies to
+    $$L(f,\calP)+\frac{\epsilon}{2}>0,$$
+    $$U(f,\calP')-\frac{\epsilon}{2}<0.$$
+    We let $\calQ$ be the common refinement of $\calP$ and $\calP'$. Then
+    $$U(f,\calQ)-L(f,\calQ)\leq U(f,\calP')-L(f,\calP)<\frac{\epsilon}{2}+\frac{\epsilon}{2}
+    =\epsilon.$$    
+  \end{proof}
+
+  \begin{prop}
+    Every continuous function is integrable.
+  \end{prop}
+
+  \begin{proof}
+    Suppose $f:[a,b]\to\R$ is continuous. Since $[a,b]$ is compact, $f$ is uniformly continuous, so 
+    $\forall x,y\in[a,b]$, $\eps\del$ such that $|f(x)=f(y)|<\epsilon/{b-a}$ when $|x-y|<\delta$.
+    Now fix $\eps$, let $calP$ be a partition of $[a,b]$ with $k+1$ uniformly spaced points, and 
+    such that $\text{mesh}(calP)<\delta$. \\
+
+    Then $\forall x,y\in[x_j,x_{j+1}]$, we have $|f(x)-f(y)|<\epsilon/{b-a}$, for $j=0,1,\dots,k-1$. 
+    In particular $M_j-m_j<\epsilon/{b-a}$, so $\Delta x_j(M_j-m_j)<\Delta x_j\epsilon/{b-a}$. We 
+    then sum over $j$, noting that $\Delta x_j=b-a/k$
+
+    \begin{align*}
+      \sum_{j=0}^{k-1}\Delta x_j(M_j-m_j)&<\sum_{j=0}^{k-1}\frac{\epsilon(b-a)}{k(b-a)} \\
+      \sum_{j=0}^{k-1}\Delta x_j M_j-\sum_{j=0}^{k-1}\Delta x_j m_j&<\frac{k\epsilon}{k} \\
+      U(f,\calP)-L(f,\calP) &<\epsilon
+    \end{align*}
+    And so $f$ is integrable by the previous proposition.
+  \end{proof}
+
+  \begin{prop}[Linearity of the integral]
+    Let $f:[a,b]\to\R$ and $g:[a,b]\to\R$ be integrable functions, and $\lambda\in\R$. Then $f+
+    \lambda g$ is inetgrable, and
+    $$\int_a^bf(x)+\lambda g(x)\text{d}x=\int_a^bf(x)\text{d}x+\lambda\int_a^bg(x)\text{d}x.$$
+  \end{prop}
+
+  \begin{proof}
+
+  \end{proof}
+
+  \begin{prop}[Additivity of the integral]
+    Let $f:[a,b]\to\R$ be bounded, and let $c\in[a,b]$. Then $f$ is integrable on $[a,b]$ if and 
+    only if $f$ is integrable on both $[a,c]$ and $[c,b]$. Moreover
+    $$\int_a^bf(x)\text{d}x=\int_a^cf(x)\text{d}x+\int_c^bf(x)\text{d}x.$$
+  \end{prop}
+
+  \begin{proof}
+    Assume $f$ is integrable on $[a,b]$. Fix $\eps$. Then we can choose a partition $\calP=
+    (x_0=a,x_1,\dots,x_{k-1},x_k=b)$ such that $U(f,\calP)-L(f,\calP)<\epsilon$. We let $\calQ$ be a 
+    refinement of $\calP$ containing $c$, say $\calQ=(x_0=a,\dots,x_{l-1},x_l=c,x_{l+1},\dots,x_k=b)$.
+    CLearly $U(f,\calQ)-L(f,\calQ)<\epsilon$. \\
+
+    We now `split' $\calQ$ into two partitions $\calQ_1=(a,x_1,\dots,c)$ and $\calQ_2=(c,x_{l+1},\dots,b)$.
+    Then $U(f,\calQ)=U(f,\calQ_1)+U(f,\calQ_2)$, and $L(f,\calQ)=L(f,\calQ_1)+L(f,\calQ_2)$, so 
+    $$U(f,\calQ_1)-L(f,\calQ_1)+U(f,\calQ_2)-L(f,\calQ_2)<\epsilon,$$
+    and so 
+    $$U(f,\calQ_1)-L(f,\calQ_1)<\epsilon,$$
+    $$U(f,\calQ_2)-L(f,\calQ_2)<\epsilon.$$
+    Hence, $f$ is integrable on $[a,c]$ and $[c,b]$. \\
+
+    Conversely, assume that $f$ is integrable on $[a,c]$ and $[c,b]$. Fix $\eps$. Then there exists 
+    partitions $\calP_1:=(a,x_1,\dots,c)$ and $\calP_2:=(c,\dots,x_{k-1},b)$ of $[a,c]$ and $[c,b]$ respectively such that 
+    $$U(f,\calP_1)-L(f,\calP_1)<\frac{\epsilon}{2},$$
+    $$U(f,\calP_2)-L(f,\calP_2)<\frac{\epsilon}{2}.$$
+    Then 
+    $$U(f,\calP_1)+U(f,\calP_2)-L(f,\calP_1)-L(f,\calP_2)<\epsilon.$$
+    We now `join' $\calP_1$ and $\calP_2$ at $c$ to create a partition of $[a,b]$, $\calQ:=
+    (a,\dots,x_{l-1},c,x_{l+1},\dots,b)$. Then 
+    $$U(f,\calQ)=U(f,\calP_1)+U(f,\calP_2),$$
+    $$L(f,\calQ)=L(f,\calP_1)+L(f,\calP_2),$$
+    so 
+    $$U(f,\calQ)-L(f,\calQ)=U(f,\calP_1)-L(f,\calP_1)+U(f,\calP_2)-L(f,\calP_2)<\frac{\epsilon}{2}
+    +\frac{\epsilon}{2}=\epsilon.$$
+    And hence, $f$ is integrable on $[a,b]$. \\
+    
+    Finally, since $\int_a^bf(x)\text{d}x=\inf{U_f}=\sup{L_f}$, for all $\epsilon>0$ there exists a partition $\calP$ of 
+    $[a,b]$ such that when we split it into two partitions $\calQ_1$ and $\calQ_2$ of $[a,c]$ and 
+    $[c,b]$ respectively, as illustrated above, we get 
+    \begin{align*}
+      \int_a^bf(x)\text{d}x &\leq U(f,\calP) \\
+                            &=U(f,\calQ_1)+U(f,\calQ_2) \\
+                            &<\int_a^cf(x)\text{d}x+\frac{\epsilon}{2}+\int_c^bf(x)\text{d}x
+                                                                      +\frac{\epsilon}{2} \\
+                            &=\int_a^cf(x)\text{d}x+\int_c^bf(x)\text{d}x+\epsilon.
+    \end{align*}
+    Similarly, 
+    \begin{align*}
+      \int_a^bf(x)\text{d}x &\geq L(f,\calP) \\
+                            &=L(f,\calQ_1)+L(f,\calQ_2) \\
+                            &>\int_a^cf(x)\text{d}x-\frac{\epsilon}{2}+\int_c^bf(x)\text{d}x
+                                                                      -\frac{\epsilon}{2} \\
+                            &=\int_a^cf(x)\text{d}x+\int_c^bf(x)\text{d}x-\epsilon,
+    \end{align*}
+    and hence,
+    $$\bigg|\int_a^bf(x)\text{d}x-\bigg(\int_a^cf(x)\text{d}x+\int_c^bf(x)\text{d}x\bigg)\bigg|
+                                                                                    <\epsilon,$$
+    so                                                                               
+    $$\int_a^bf(x)\text{d}x=\int_a^cf(x)\text{d}x+\int_c^bf(x)\text{d}x.$$
+  \end{proof}
+
+  \begin{lemma}
+    Let $A\subset\R^n$, and $f:A\to\R$ be bounded. Then
+    $$\sup_{x\in A}{|f(x)|}-\inf_{x\in A}{|f(x)|}\leq\sup_{x\in A}{f(x)}-\inf_{x\in A}{f(x)}.$$
+  \end{lemma}
+
+  \begin{proof}
+    \verb%% \\
+    \textit{Case 1.} 
+  \end{proof}
