@@ -491,7 +491,7 @@
     Suppose $f:[a,b]\to\R$ is continuous. Since $[a,b]$ is compact, $f$ is uniformly continuous, so 
     $\forall x,y\in[a,b]$, $\eps\del$ such that $|f(x)=f(y)|<\epsilon/{b-a}$ when $|x-y|<\delta$.
     Now fix $\eps$, let $calP$ be a partition of $[a,b]$ with $k+1$ uniformly spaced points, and 
-    such that $\text{mesh}(calP)<\delta$.
+    such that $\text{mesh}(\calP)<\delta$.
 
     Then $\forall x,y\in[x_j,x_{j+1}]$, we have $|f(x)-f(y)|<\epsilon/{b-a}$, for $j=0,1,\dots,k-1$. 
     In particular $M_j-m_j<\epsilon/{b-a}$, so $\Delta x_j(M_j-m_j)<\Delta x_j\epsilon/{b-a}$. We 
@@ -525,7 +525,7 @@
     Assume $f$ is integrable on $[a,b]$. Fix $\eps$. Then we can choose a partition $\calP=
     (x_0=a,x_1,\dots,x_{k-1},x_k=b)$ such that $U(f,\calP)-L(f,\calP)<\epsilon$. We let $\calQ$ be a 
     refinement of $\calP$ containing $c$, say $\calQ=(x_0=a,\dots,x_{l-1},x_l=c,x_{l+1},\dots,x_k=b)$.
-    CLearly $U(f,\calQ)-L(f,\calQ)<\epsilon$.
+    Clearly $U(f,\calQ)-L(f,\calQ)<\epsilon$.
 
     We now `split' $\calQ$ into two partitions $\calQ_1=(a,x_1,\dots,c)$ and $\calQ_2=(c,x_{l+1},\dots,b)$.
     Then $U(f,\calQ)=U(f,\calQ_1)+U(f,\calQ_2)$, and $L(f,\calQ)=L(f,\calQ_1)+L(f,\calQ_2)$, so 
@@ -615,9 +615,71 @@
     $U(f,\calP)-L(f,\calP)<\epsilon$ whenever $\text{mesh}(\calP)<\delta$.
   \end{lemma}
 
+  %\begin{proof}
+  %  Fix $\epsilon>0$. Then, since $f$ is integrable, it is bounded, so $\exists M\geq0$ such that 
+  %  $|f(x)|\leq M,\,\forall x\in[a,b]$. Also, $\exists$ partition $\calQ:=(x_0=a,x_1,\dots,x_{k-1},x_k=b)$ 
+  %  such that 
+  %  $$U(f,\calQ)-L(f,\calQ)<\frac{\epsilon}{2}.$$
+%
+  %  Let $\calP:=(x_0=a,x_1,\dots,x_{l-1},x_l=b)$ be a partition of $[a,b]$ with $\text{mesh}(\calP)
+  %  <\delta:=\frac{\epsilon}{5kM}$.
+%
+  %  Then $\forall j=0,\dots,k-1$, we define the sets 
+  %  $$A_j:=\{0\leq i\leq l-1:[x_i]\}$$
+  %\end{proof} 
+
+  \begin{definition}[Riemann sum]
+    Given an integrable function $f:[a,b]\to\R$ and a \textit{tagged partition}, 
+    $(\calP,\tau)$ where 
+    $$\calP=(x_0,\dots,x_k),$$
+    $$\tau=(t_0,\dots,t_{k-1})$$ with 
+    $t_j\in[x_j,x_{j+1}]\,\forall j\in\{0,\dots,k-1\}$, of $[a,b]$, we define a \textit{Riemann sum} by 
+    $$R(f,\calP,\tau)=\sum_{j=0}^{k-1}{f(t_j)\Delta x_j}.$$
+  \end{definition}
+
+  \begin{theorem}
+    Let $f:[a,b]\to\R$ be an integrable function, and $\big((\calP_i,\tau_i)\big)_{i\in\N}$ be sequence of 
+    tagged partitions of $[a,b]$ such that $\text{mesh}(\calP_i)\to 0$ as $i\to\infty$. Then 
+    $$R(f,\calP_i,\tau_i)\to\int_a^bf(x)\text{d}x,$$
+    as $i\to\infty$.
+  \end{theorem}
+
   \begin{proof}
-    Fix $\eps$. Then, since $f$ is integrable, $\exists$ partition $\calQ$ such that 
-    $$U(f,\calQ)-L(f,\calQ)<\frac{\epsilon}{2}.$$
-    Let $\calP$ be a partition of $[a,b]$ with $\text{mesh}(\calP)<\delta:=\text{mesh}(\calQ)$.
-    
-  \end{proof} 
+    Fix $\varepsilon>0$. Then $\del$ such that $U(f,\calQ)-L(f,\calQ)<\varepsilon$ whenever 
+    $\text{mesh}(\calQ)<\delta$. Since $\text{mesh}(\calP_i)\to 0$ as $i\to\infty$, $\exists N\in\N$ 
+    such that $|\text{mesh}(\calP_i)|<\delta$ whenever $i\geq N$. So 
+    $$U(f,\calP_i)-L(f,\calP_i)<\varepsilon\quad\forall i\geq N.$$
+    Note that since $(m_j)_i\leq (f(t_j))_i\leq (M_j)_i$, we have $L(f,\calP_i)\leq R(f,\calP_i,\tau_i)\leq U(f,\calP_i)$, 
+    and in particular 
+    $$L(f,\calP_i)-\varepsilon<R(f,\calP_i,\tau_i)<U(f,\calP_i)+\varepsilon.$$
+    Then since 
+    $$L(f,\calP_i)\leq\int_a^bf(x)\text{d}x\leq  U(f,\calP_i),$$
+    we have 
+    $$-\varepsilon<R(f,\calP_i,\tau_i)-\int_a^bf(x)\text{d}x<\varepsilon.$$
+    Hence
+    $$\bigg|R(f,\calP_i,\tau_i)-\int_a^bf(x)\text{d}x\bigg|<\varepsilon.$$
+  \end{proof}
+
+  \begin{theorem}[Fundamental theorem of Calculus]
+    Let $f:[a,b]\to\R$ be continuous. We define $F:[a,b]\to\R$ by 
+    $$F(x)=\int_a^xf(t)\text{d}t.$$
+    Then $F$ is differentiable on $(a,b)$, and $F'(x)=f(x)$ $\forall x,y\in[a,b]$.
+  \end{theorem}
+
+  \begin{proof}
+    Fix $\varepsilon>0$. Then since $f$ is continuous on $[a,b]$, it is uniformly continuous so 
+    $\exists\delta>0$ such that $|f(y)-f(z)|<\varepsilon$ whenever $|y-z|<\delta$. Now fix 
+    $x\in(a,b)$. Then $\forall y\in[a,b]$ such that $0<|y-x|<\delta$, we have:
+    \begin{align*}
+      \bigg|\frac{F(y)-F(x)}{y-x}-f(x)\bigg|&=\bigg|\frac{1}{y-x}\bigg(\int_a^yf(t)\text{d}t-
+      \int_a^xf(t)\text{d}t\bigg)-f(x)\bigg| \\
+                                            &=\bigg|\frac{1}{y-x}\int_x^yf(t)\text{d}t-f(x)\bigg| \\
+                                            &=\bigg|\frac{1}{y-x}\int_x^yf(t)-f(x)\text{d}t\bigg| \\
+                                            &=\frac{1}{|y-x|}\bigg|\int_x^yf(t)-f(x)\text{d}t\bigg| \\
+                                            &\leq\sup_{t\in[x,y]}|f(t)-f(x)| \\
+                                            &=\max_{t\in[x,y]}|f(t)-f(x)|\text{ by the extreme value theorem } \\
+                                            &<\varepsilon, 
+    \end{align*}
+    Since $|t-x|<\delta$.
+  \end{proof}
+
