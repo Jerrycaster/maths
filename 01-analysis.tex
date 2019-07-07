@@ -592,14 +592,32 @@
     $$\sup_{x\in A}{|f(x)|}-\inf_{x\in A}{|f(x)|}\leq\sup_{x\in A}{f(x)}-\inf_{x\in A}{f(x)}.$$
   \end{lemma}
 
+  %\begin{proof}
+  %  \verb%% 
+%
+  %  \textit{Case 1.} $$\sup_{x\in A}f(x)\leq0.$$
+  %    Then $f(x)\leq0\,\forall x\in A$, so $f(x)=-|f(x)|$. 
+  %    
+  %    So $\sup_{x\in A}{f(x)}-\inf_{x\in A}{f(x)}
+  %    =\sup_{x\in A}{-|f(x)|}-\inf_{x\in A}{-|f(x)|}=-\inf_{x\in A}{|f(x)|}+\sup_{x\in A}{|f(x)|}$, 
+  %    and hence we have equality.
+%
+  %  \textit{Case 2.} $$\sup_{x\in A}f(x)\geq0,\,\inf_{x\in A}f(x)\geq0.$$
+  %    Then again we have equality trivially. 
+%
+  %  \textit{Case 3.} $$\sup_{x\in A}f(x)>0,\,\inf_{x\in A}f(x)<0.$$
+  %    Then $\sup_{x\in A}f(x)=|\sup_{x\in A}f(x)|\leq\sup_{x\in A}|f(x)|$, 
+  %    $\inf_{x\in A}f(x)=-|\inf_{x\in A}f(x)|\geq-\inf_{x\in A}{|f(x)|}$.
+  %\end{proof}
+
+  \begin{lemma}
+    Let $f:[a,b]\to\R$ be an integrable function. Then $\eps,\del$ such that 
+    $U(f,\calP)-L(f,\calP)<\epsilon$ whenever $\text{mesh}(\calP)<\delta$.
+  \end{lemma}
+
   \begin{proof}
-    \verb%% \\
-    \textit{Case 1.} $$\sup_{x\in A}f(x)\geq0,\,\inf_{x\in A}f(x)\geq0.$$
-      Then we have equality trivially. 
-
-    \textit{Case 2.} $$\sup_{x\in A}f(x)<0,\,\inf_{x\in A}f(x)<0.$$
-      Then 
-      $\sup_{x\in A}f(x)=-|\sup_{x\in A}f(x)|\geq-\sup_{x\in A}|f(x)|=\inf_{x\in A}-|f(x)|$, and
-
-     % $\sup_{x\in A}f(x)-\inf_{x\in A}f(x)=\sup_{x\in A}f(x)+\sup_{x\in A}{-f(x)}\geq 0$
-  \end{proof}
+    Fix $\eps$. Then, since $f$ is integrable, $\exists$ partition $\calQ$ such that 
+    $$U(f,\calQ)-L(f,\calQ)<\frac{\epsilon}{2}.$$
+    Let $\calP$ be a partition of $[a,b]$ with $\text{mesh}(\calP)<\delta:=\text{mesh}(\calQ)$.
+    
+  \end{proof} 
