@@ -21,10 +21,10 @@
     $$\Rightarrow \max_k{|a^k|}\leq\|x\|\leq\sqrt{n}\max_k{|a^k|}$$
     
     First assume that $a_i\to a$ as $i\to\infty$. Then $\forall\epsilon>0$ $\exists N\in\N$ such 
-    that $\|a_i-a\|<\epsilon$ whenever $i\geq N$. \\
+    that $\|a_i-a\|<\epsilon$ whenever $i\geq N$.
 
     Then $\forall k=1\dots n$, $|a^k_i-a^k|\leq\max_k{|a^k_i-a^k|}\leq\|a_i-a\|<\epsilon$ whenever 
-    $i\geq N$, so $a^k_i\to a^k$ as $i\to\infty$.\\
+    $i\geq N$, so $a^k_i\to a^k$ as $i\to\infty$.
 
     Conversely, assume that $a_i^k\to a^k$ as $i\to\infty$, $\forall k\in\{1,\dots,n\}$.
     Then $\forall\epsilon>0$, $\exists N^k\in\N$ such that $|a_i^k-a^k|\leq\frac{\epsilon}{\sqrt{n}}$ 
@@ -41,7 +41,7 @@
 
   \begin{proof}
     Let $(x_i)_{i\in\N}$ be a sequence with $x_i\in\R^n$. 
-    Suppose for a contradiction that $x_i\to a$ and $x_i\to b$ as $i\to\infty$, with $a\neq b$.\\
+    Suppose for a contradiction that $x_i\to a$ and $x_i\to b$ as $i\to\infty$, with $a\neq b$.
 
     Then $\forall\epsilon>0$, $\exists N_a,N_b\in\N$ such that $\|x_i-a\|<\frac{\epsilon}{2}$ whenever 
     $i\geq N_a$, and $\|x_i-b\|<\frac{\epsilon}{2}$ whenever $i\geq N_b$. Let
@@ -119,7 +119,7 @@
     convergent subsequence.
   \end{cor}
   \begin{proof}
-    Since $(a_i)$ is bounded, and the component sequences $(a_i^k)$ are bounded $\forall k=1,\dots,n$.\\
+    Since $(a_i)$ is bounded, and the component sequences $(a_i^k)$ are bounded $\forall k=1,\dots,n$.
 
     Then by the previous lemma, $(a_i^1),\dots,(a_i^n)$ have subsequences $(a_{i_{j_1}}^1), \dots, 
     (a_{i_{j_n}}^n)$ converging to $a^1,\dots,a^n$ respectively. Let 
@@ -141,7 +141,7 @@
   \end{theorem}
 
   \begin{proof}
-    Since $(a_i)$ is bounded, it has a subsequence $(a_{i_j})\to a$ as $j\to\infty$. \\
+    Since $(a_i)$ is bounded, it has a subsequence $(a_{i_j})\to a$ as $j\to\infty$.
 
     And since $E$ is closed, and $a$ a limit point of $E$, $a\in E$.
   \end{proof}
@@ -159,13 +159,13 @@
   by points that are also `near', and so showing that a function is continuous amounts to finding a positive
   relationship between the definition of `nearness' in the domain and the definition of `nearness' in 
   the range (these are not generally the same). In this 
-  case, points $x,y\in\R^n$ are near if the distance between them, $\|x-y\|$, is small. \\
+  case, points $x,y\in\R^n$ are near if the distance between them, $\|x-y\|$, is small.
   
   In a more general topological sense, we say that two points are near, in a certain capacity, 
   if they are both elements of the same open set. Thus, very vaguely, the more open sets the points 
   are both elements of, the nearer they are. In Euclidean space, open sets are defined as arbitary 
   unions of open balls $B_\epsilon(x)$, for $x\in\R^n$ and $\epsilon>0$. Thus, $x=y$ precisely when 
-  $y\in B_\epsilon(x)$ (and $x\in B_\epsilon(y)$) $\forall\epsilon>0$. \\ 
+  $y\in B_\epsilon(x)$ (and $x\in B_\epsilon(y)$) $\forall\epsilon>0$. 
   
   This is the Euclidean case of 
   a general property called non-seperatedness, which we use to describe 
@@ -174,7 +174,7 @@
   We will revist this later, when we discuss seperatedness conditions.
 
   \begin{prop}
-    For $f:A\to\R^m$, we write $f(x)=(f_1(x),\dots,f_m(x))$.\\
+    For $f:A\to\R^m$, we write $f(x)=(f_1(x),\dots,f_m(x))$.
 
     Then $f$ is continuous if and only if each of the component functions 
     $f_i:A\to\R$ are continuous.
@@ -189,10 +189,10 @@
                      &<\epsilon\quad\forall i=1,\dots,m.
     \end{align*}
 
-    Hence each $f_i$ is continuous at $a$. Now assume that each $f_i$ is continuous at $a\in A$.\\
+    Hence each $f_i$ is continuous at $a$. Now assume that each $f_i$ is continuous at $a\in A$.
 
     Then $\forall\epsilon>0$, $\exists\delta_i>0$ such that $|f_i(x)-f_i(a)|<\frac{\epsilon}{m\sqrt{m}}$
-    whenever $\|x-a\|<\delta_i$, $\forall i=1,\dots,m$. Now let $\delta=\min{\{\delta_1,\dots,\delta_m\}}$\\
+    whenever $\|x-a\|<\delta_i$, $\forall i=1,\dots,m$. Now let $\delta=\min{\{\delta_1,\dots,\delta_m\}}$
 
     Then when $\|x-a\|<\delta$, $\|x-a\|<\delta_i$, so $|f_i(x)-f_i(a)|<\frac{\epsilon}{m\sqrt{m}}$ 
     $\forall i=1,\dots,m$. Then
@@ -222,7 +222,7 @@
 
     Now assume the converse holds, and for a contradiction that $f$ is not continuous. Then 
     $\exists\epsilon>0$ such that $\forall\delta>0$ $\|f(x)-f(x_i)\|\geq\epsilon$ whenever 
-    $0<\|x-x_i\|<\delta$, and in particular whenever $0<\|x-x_i\|<\frac{1}{i}$, $\forall i\in\N$.\\
+    $0<\|x-x_i\|<\delta$, and in particular whenever $0<\|x-x_i\|<\frac{1}{i}$, $\forall i\in\N$.
 
     Then the sequence $(x_i)$ converges to $x$, so by assumption the image sequence $(f(x_i))$ 
     converges to $f(x)$.\\
@@ -240,14 +240,14 @@
     We prove that $f$ reaches its maximum on $E$. First suppose for a contradiction that 
     $f$ is unbounded above on $E$. Then $\forall M\geq 0$, and in particular 
     $\forall i\in\N$, $\exists x_i\in E$ such that $f(x_i)>i$. 
-    In other words, $f(x_i)\to\infty$ as $i\to\infty$.\\
+    In other words, $f(x_i)\to\infty$ as $i\to\infty$.
 
     Then since $E$ is compact, it is bounded, so the sequence $(x_i)_{i\in\N}$ is bounded. 
-    Then by the Bolzano-Weierstrass theorem it has a subsequence $(x_{i_j})_{j\in\N}$ convergent to $x\in E$.\\
+    Then by the Bolzano-Weierstrass theorem it has a subsequence $(x_{i_j})_{j\in\N}$ convergent to $x\in E$.
 
     Now since $f$ is continuous on $E$, it is continuous at $x$, so $f(x_{i_j})\to f(x)$ as $j\to\infty$.
     Since $E$ is compact, it is closed, so $f(x)\in E$, and therefore $f(x)$ is finite. This is a contraction since 
-    $f$ was assumed to diverge to infinity for any subsequence of $(x_i)$, including $(x_{i_j})$.\\
+    $f$ was assumed to diverge to infinity for any subsequence of $(x_i)$, including $(x_{i_j})$.
 
     So $f$ is bounded above on $E$. Now by completeness of $\R$, $f(E)$ has a supremum, say 
     $$M=\sup_{x\in E}{f(x)}.$$ 
@@ -256,16 +256,16 @@
     $$M-\frac{1}{i}<f(x_i)\leq M.$$
     Then clearly $f(x_i)\to M$ as $i\to\infty$, so by the Bolzano-Weierstrass theorem $(x_i)_{i\in\N}$ has 
     a subsequence $(x_{i_j})_{j\in\N}$ convergent in to some $p_+\in E$. Since $f$ is continuous at $p_+$, 
-    $f(x_{i_j})\to f(p_+)$ as $j\to\infty$. Hence $f(p_+)=M$, so $f$ achieves its maximum on $E$.\\
+    $f(x_{i_j})\to f(p_+)$ as $j\to\infty$. Hence $f(p_+)=M$, so $f$ achieves its maximum on $E$.
 
     Now in a similar fashion we prove that $f$ reaches its minimum on $E$. Suppose that 
     $f$ is unbounded below on $E$. Then $\forall i\in\N$, $\exists x_i\in E$ such that $f(x_i)<-i$. 
-    So $f(x_i)\to-\infty$ as $i\to\infty$.\\
+    So $f(x_i)\to-\infty$ as $i\to\infty$.
 
     Now, the sequence $(x_i)_{i\in\N}$ is bounded. Then by the Bolzano-Weierstrass theorem it has a 
     subsequence $(x_{i_j})_{j\in\N}$ convergent to $x\in E$. Since $f$ is continuous at 
     $x$, $f(x_{i_j})\to f(x)$ as $j\to\infty$, and so $f(x)\in E$ (so $f(x)$ is finite). This is a contraction since 
-    $f$ was assumed to diverge to negative infinity for any subsequence of $(x_i)$, including $(x_{i_j})$.\\
+    $f$ was assumed to diverge to negative infinity for any subsequence of $(x_i)$, including $(x_{i_j})$.
 
     So $f$ is bounded below on $E$. Now by completeness of $\R$, $f(E)$ has an infimum, say 
     $$m=\inf_{x\in E}{f(x)}.$$ 
@@ -295,7 +295,7 @@
   \begin{proof}
     Fix $\eps$. Then $\forall x,y\in\R$ with $x<y$, by the Mean Value Theorem 
     $\exists c\in(x,y)$ such that $f'(c)=\frac{f(y)-f(x)}{y-x}$. By assumption 
-    $\exists M\geq 0$ such that $|f'(c)|=\frac{|f(y)-f(x)|}{|y-x|}\leq M$.\\
+    $\exists M\geq 0$ such that $|f'(c)|=\frac{|f(y)-f(x)|}{|y-x|}\leq M$.
 
     Set $\delta = \frac{\epsilon}{M+1}$. Then 
     \begin{align*}
@@ -313,7 +313,7 @@
   \begin{proof}
     Let $E\subset\R^n$ be compact, and $f:E\to\R^m$ continuous. We assume for a contradiction that 
     $f$ is not uniformly continuous. Then $\exists\epsilon>0$ such that $\forall i\in\N$ 
-    $\exists x_i,y_i\in E$ with $\|x_i-y_i\|<\frac{1}{i}$ such that $\|f(x_i)-f(y_i)\|\geq\epsilon$.\\
+    $\exists x_i,y_i\in E$ with $\|x_i-y_i\|<\frac{1}{i}$ such that $\|f(x_i)-f(y_i)\|\geq\epsilon$.
 
     Then by the Bolzano-Weierstrass theorem, the sequence $(x_i)_{i\in\N}$ has a
     subsequences $(x_{i_j})_{j\in\N}$ converging to some $x\in E$.  Furthermore, the sequence $(y_i)_{i\in\N}$ 
@@ -335,7 +335,7 @@
   \end{theorem}
 
   \begin{definition}[Uniform convergence]
-    Let $A\subset\R^n$ and $(f_i)_{i\in\N}$ be a sequence of functions $f_i:A\to\R^m.$ \\
+    Let $A\subset\R^n$ and $(f_i)_{i\in\N}$ be a sequence of functions $f_i:A\to\R^m.$
 
     We say $f_i\to f$ \textit{uniformly} to $f:A\to\R^m$ if and only if $\forall\epsilon>0$, 
     $\exists N\in\N$ such that $\|f_i(x)-f(x)\|<\epsilon$ whenever $i\geq N$ and $x\in A$.
@@ -343,14 +343,14 @@
 
   \begin{theorem}
     Let $A\subset\R^n$ and $(f_i)_{i\in\N}$ be a sequence of functions $f_i:A\to\R^m$ which 
-    converges uniformly to $f:A\to\R^m$ uniformly. \\
+    converges uniformly to $f:A\to\R^m$ uniformly.
     
     Then if $f_i$ is uniformly continuous $\forall i\in\N$, $f$ is uniformly continuous.
   \end{theorem}
 
   \begin{proof}
     Fix $\epsilon>0$. Then since $f_i\to f$ uniformly, $\exists N\in\N$ such that 
-    $\|f_i(x)-f(x)\|<\epsilon/3$ whenever $i\geq N$ and $x\in A$. \\
+    $\|f_i(x)-f(x)\|<\epsilon/3$ whenever $i\geq N$ and $x\in A$.
 
     Also since each $f_i$ is uniformly continuous, $\exists\delta>0$ such that $\|f_i(x)-f_i(y)\|$ 
     $\forall x,y\in A$. Then using the triangle inequality:
@@ -369,7 +369,7 @@
 
   \begin{proof}
     Fix $a\in A$, and $\epsilon>0$. Then since $f_i\to f$ uniformly, $\exists N\in\N$ such that 
-    $\|f_i(x)-f(x)\|<\epsilon/3$ whenever $i\geq N$ and $x\in A$.\\
+    $\|f_i(x)-f(x)\|<\epsilon/3$ whenever $i\geq N$ and $x\in A$.
 
     Also since each $f_i$ is continuous, $\exists\delta>0$ such that $\|f_i(x)-f_i(a)\|<\epsilon/3$ 
     $\forall x\in A$. Then using the triangle inequality:
@@ -388,11 +388,11 @@
   \begin{definition}[Partitions]
     Let $[a,b]\subset\R$. We define a \textit{partition}, $\mathcal{P}$, of $[a,b]$ by an ordered tuple
     $$\mathcal{P}=(x_0,x_1,\dots,x_{k-1},x_k),$$
-    such that $a=x_0<x_1<\dots<x_{k-1}<x_k=b$. \\
+    such that $a=x_0<x_1<\dots<x_{k-1}<x_k=b$.
 
     We call any interval of the form $[x_j,x_{j+1}]$ a \textit{subinterval} of the partition $\mathcal{P}$. 
     The length of this subinterval is $\Delta x_j=x_{j+1}-x_j$, and we define 
-    $$\text{mesh}(\mathcal{P}):=\max_{j=0,\dots,k-1}{\Delta x_j}.$$ \\
+    $$\text{mesh}(\mathcal{P}):=\max_{j=0,\dots,k-1}{\Delta x_j}.$$
 
     Finally, for any two partitions $\mathcal{P}$ and $\mathcal{Q}$, we say $\mathcal{Q}$ \textit{refines} 
     $\mathcal{P}$ iff every point in $\mathcal{P}$ lies in $\mathcal{Q}$.
@@ -406,20 +406,6 @@
     $$L(f,\mathcal{P})=\sum_{j=0}^{k-1}m_j\Delta x_j,$$
     where $m_j=\inf_{x\in[x_j,x_{j+1}]}{f(x)}$.  
   \end{definition}
-
-  \begin{lemma}
-    Let $A\subset\R^n$ and $f,g:A\to\R$ be bounded. Then 
-    \begin{enumerate}
-      \item $\sup_{x\in A}{-f(x)}=-\inf_{x\in A}{f(x)}$
-      \item $\inf_{x\in A}{-f(x)}=-\sup_{x\in A}{f(x)}$
-    \end{enumerate}
-  \end{lemma}
-
-  %\begin{proof}
-  %  \begin{enumerate}
-  %    \item 
-  %  \end{enumerate}
-  %\end{proof}
 
   \begin{lemma}
     Let $\mathcal{P}$ and $\mathcal{Q}$ be partitions of $[a,b]$, with $\mathcal{Q}$ a refinement of 
@@ -483,7 +469,7 @@
     $$\overline{\int_a^b}f(x)\text{d}x-\underline{\int_a^b}f(x)\text{d}x\leq U(f,\calP)-L(f,\calP)<\epsilon,$$
     and so 
     $$\overline{\int_a^b}f(x)\text{d}x=\underline{\int_a^b}f(x)\text{d}x$$
-    so $f$ is integrable. \\
+    so $f$ is integrable. 
 
     Conversely, assume that $f$ is integrable. Fix $\eps$. Then since $\lowint=\sup{L_f}$ and 
     $\upint=\inf{U_f}$, $\exists\calP,\calP'$ as parititions of $[a,b]$, such that 
@@ -505,7 +491,7 @@
     Suppose $f:[a,b]\to\R$ is continuous. Since $[a,b]$ is compact, $f$ is uniformly continuous, so 
     $\forall x,y\in[a,b]$, $\eps\del$ such that $|f(x)=f(y)|<\epsilon/{b-a}$ when $|x-y|<\delta$.
     Now fix $\eps$, let $calP$ be a partition of $[a,b]$ with $k+1$ uniformly spaced points, and 
-    such that $\text{mesh}(calP)<\delta$. \\
+    such that $\text{mesh}(calP)<\delta$.
 
     Then $\forall x,y\in[x_j,x_{j+1}]$, we have $|f(x)-f(y)|<\epsilon/{b-a}$, for $j=0,1,\dots,k-1$. 
     In particular $M_j-m_j<\epsilon/{b-a}$, so $\Delta x_j(M_j-m_j)<\Delta x_j\epsilon/{b-a}$. We 
@@ -539,7 +525,7 @@
     Assume $f$ is integrable on $[a,b]$. Fix $\eps$. Then we can choose a partition $\calP=
     (x_0=a,x_1,\dots,x_{k-1},x_k=b)$ such that $U(f,\calP)-L(f,\calP)<\epsilon$. We let $\calQ$ be a 
     refinement of $\calP$ containing $c$, say $\calQ=(x_0=a,\dots,x_{l-1},x_l=c,x_{l+1},\dots,x_k=b)$.
-    CLearly $U(f,\calQ)-L(f,\calQ)<\epsilon$. \\
+    CLearly $U(f,\calQ)-L(f,\calQ)<\epsilon$.
 
     We now `split' $\calQ$ into two partitions $\calQ_1=(a,x_1,\dots,c)$ and $\calQ_2=(c,x_{l+1},\dots,b)$.
     Then $U(f,\calQ)=U(f,\calQ_1)+U(f,\calQ_2)$, and $L(f,\calQ)=L(f,\calQ_1)+L(f,\calQ_2)$, so 
@@ -547,7 +533,7 @@
     and so 
     $$U(f,\calQ_1)-L(f,\calQ_1)<\epsilon,$$
     $$U(f,\calQ_2)-L(f,\calQ_2)<\epsilon.$$
-    Hence, $f$ is integrable on $[a,c]$ and $[c,b]$. \\
+    Hence, $f$ is integrable on $[a,c]$ and $[c,b]$.
 
     Conversely, assume that $f$ is integrable on $[a,c]$ and $[c,b]$. Fix $\eps$. Then there exists 
     partitions $\calP_1:=(a,x_1,\dots,c)$ and $\calP_2:=(c,\dots,x_{k-1},b)$ of $[a,c]$ and $[c,b]$ respectively such that 
@@ -562,7 +548,7 @@
     so 
     $$U(f,\calQ)-L(f,\calQ)=U(f,\calP_1)-L(f,\calP_1)+U(f,\calP_2)-L(f,\calP_2)<\frac{\epsilon}{2}
     +\frac{\epsilon}{2}=\epsilon.$$
-    And hence, $f$ is integrable on $[a,b]$. \\
+    And hence, $f$ is integrable on $[a,b]$.
     
     Finally, since $\int_a^bf(x)\text{d}x=\inf{U_f}=\sup{L_f}$, for all $\epsilon>0$ there exists a partition $\calP$ of 
     $[a,b]$ such that when we split it into two partitions $\calQ_1$ and $\calQ_2$ of $[a,c]$ and 
@@ -590,11 +576,30 @@
   \end{proof}
 
   \begin{lemma}
+    Let $A\subset\R^n$ and $f,g:A\to\R$ be bounded. Then 
+    \begin{enumerate}
+      \item $\sup_{x\in A}{-f(x)}=-\inf_{x\in A}{f(x)}$
+      \item $\inf_{x\in A}{-f(x)}=-\sup_{x\in A}{f(x)}$
+      \item $|\sup_{x\in A}f(x)|\leq\sup_{x\in A}|f(x)|$
+      \item $|\inf_{x\in A}f(x)|\leq\inf_{x\in A}|f(x)|$
+      \item $\sup_{x\in A}{f(x)+g(x)}\leq\sup_{x\in A}{f(x)}+\sup_{x\in A}{g(x)}$
+      \item $\inf_{x\in A}{f(x)+g(x)}\geq\inf_{x\in A}{f(x)}+\inf_{x\in A}{g(x)}$
+    \end{enumerate}
+  \end{lemma}
+
+  \begin{lemma}
     Let $A\subset\R^n$, and $f:A\to\R$ be bounded. Then
     $$\sup_{x\in A}{|f(x)|}-\inf_{x\in A}{|f(x)|}\leq\sup_{x\in A}{f(x)}-\inf_{x\in A}{f(x)}.$$
   \end{lemma}
 
   \begin{proof}
     \verb%% \\
-    \textit{Case 1.} 
+    \textit{Case 1.} $$\sup_{x\in A}f(x)\geq0,\,\inf_{x\in A}f(x)\geq0.$$
+      Then we have equality trivially. 
+
+    \textit{Case 2.} $$\sup_{x\in A}f(x)<0,\,\inf_{x\in A}f(x)<0.$$
+      Then 
+      $\sup_{x\in A}f(x)=-|\sup_{x\in A}f(x)|\geq-\sup_{x\in A}|f(x)|=\inf_{x\in A}-|f(x)|$, and
+
+     % $\sup_{x\in A}f(x)-\inf_{x\in A}f(x)=\sup_{x\in A}f(x)+\sup_{x\in A}{-f(x)}\geq 0$
   \end{proof}
