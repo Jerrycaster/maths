@@ -241,7 +241,8 @@
             transformations from $V$ to itself.
       \item If $(X,\tau)$ is a topological space, then 
             $$\Aut{X}=\Homeo{X},$$
-            the group of homeomorphisms of $X$. \\
+            the group of homeomorphisms of $X$. Note that homeomorphism groups of homeomorphic spaces 
+            are isomorphic as groups. \\
     \end{enumerate}
   \end{example}
 
@@ -258,15 +259,17 @@
 
   In fact, this is a special case of an arbitrary group $G$ acting on $X$. We specify the action 
   by describing a homomorphism
-  $$\phi:G\to\Aut{X}.$$
+  $$\varphi:G\to\Aut{X}.$$
   Which amounts to assigning an automorphism of $X$ to each element of $G$ in such a way that
   \begin{enumerate}
     \item The identity automorphism in $\Aut{X}$ is assigned to the identity in $G$,
     \item The composition of the two automorphisms assigned to two elements $g,h\in G$ is assigned to 
           the product $gh$.
   \end{enumerate}
-  Since $\phi(G)$ is a subgroup of $\Aut{X}$, we define the action of $G$ on $X$ by 
-  the group action of the homomorphic image of $G$, in $\Aut{X}$, on $X$. Specifically:
+  Since $\varphi(G)$ is a subgroup of $\Aut{X}$, we define the action of $G$ on $X$ by 
+  the group action of the homomorphic image of $G$, in $\Aut{X}$, on $X$. So $g\cdot x=\varphi(g)x$, 
+  where $\varphi(g)x$ is the result of applying the automorphism $\varphi(g)\in\Aut{X}$ to $x\in X$. 
+  Specifically:
 
   \begin{definition}[Group action]
     Let $G$ be a group and $X$ a set. The \textit{(left) group action}, is a function
@@ -366,31 +369,34 @@
     and taking inverses:
     $$G\to G:x\mapsto x^{-1},\quad x\in G$$
     are continuous, where $G\times G$ is given the product topology.
-  \end{definition}
 
-  For example, we can turn every finite group into a topological group by giving it the discrete 
-  topology.
+    For example, we can turn every finite group into a topological group by giving it the discrete 
+    topology. Returning to our idea of group actions, since the automorphism groups of a topological 
+    space $X$ is $\Homeo{X}$, we can think of $\Homeo{X}$ as acting of $X$
 
-  \begin{definition}[Homomorphism of topological groups]
-    Let $G,H$ be topological groups. Then a \textit{homomorphism of topological groups} is a 
-    structure-preserving map (i.e. a group homomorphism), $\phi:G\to H$, which is continuous. Explicitly,
-    \begin{enumerate}
-      \item $\phi(xy)=\phi(x)\phi(y),\quad x,y\in G$
-      \item $\phi^{-1}(U)$ is open in $G$ whenever $U$ is an open subset of $H$.
-    \end{enumerate}
-
-    An \textit{isomorphism} is a bijective group homomorphism which is also a homeomorphism of the 
-    underlying topological spaces.
-  \end{definition}
-
-  \begin{definition}[Continuous group action]
     Let $X$ be a topological space, and $G$ a topological group. Then we say the action of $G$ on 
     $X$, 
     $$\phi:G\times X\to X:(g,x)\mapsto g\cdot x,$$
     is \textit{continuous} if $\phi^{-1}(U)$ is open in $G\times X$, with respect to the product 
-    topology, whenever $U$ is open in $X$. \\
+    topology, whenever $U$ is open in $X$. 
 
-    We then call $X$ a \textit{$G$-space}.
+    We then call $X$ a \textit{$G$-space}. \\ 
+
+    Another way of thinking about a continuous group action is if we define a homomorphism
+    $$\varphi:G\to\Homeo{X},$$
+    then the action of an element $g\in G$ on $x\in X$ is $g\cdot x:=\varphi(g)x$.
+
+      %\begin{definition}[Homomorphism of topological groups]
+  %  Let $G,H$ be topological groups. Then a \textit{homomorphism of topological groups} is a 
+  %  structure-preserving map (i.e. a group homomorphism), $\phi:G\to H$, which is continuous. Explicitly,
+  %  \begin{enumerate}
+  %    \item $\phi(xy)=\phi(x)\phi(y),\quad x,y\in G$
+  %    \item $\phi^{-1}(U)$ is open in $G$ whenever $U$ is an open subset of $H$.
+  %  \end{enumerate}
+%
+  %  An \textit{isomorphism} is a bijective group homomorphism which is also a homeomorphism of the 
+  %  underlying topological spaces.
+  %\end{definition}
   \end{definition}
 
 \subsection{Initial and Final Topologies}
@@ -553,29 +559,3 @@
           $x\sim f(x)\quad\forall x\in A$. Then we define 
           $$X\cup_q Y=X\sqcup Y\,/\sim.$$
   \end{enumerate}
-
-\subsection{Manifolds}
-\label{sec:2.6}
-
-  \begin{definition}[Chart]
-    A \textit{chart}, $(U,\phi)$, for a topological space $X$ is an ordered pair of an open subset 
-    $U\subset X$ to an open subset of $R^n$.
-  \end{definition}
-
-  \begin{definition}[Atlas]
-    An \textit{atlas} of $X$ is a collection of charts $\{(U_i,\phi_i):i\in I\}$ such that
-    $$\bigcup_{i\in I}{U_i}=X.$$
-  \end{definition}
-
-  \begin{definition}[Manifold]
-    If $\phi_i(U_i)=\R^n$ $\forall i\in I$, then $X$ is called an n-dimensional \textit{manifold}.
-  \end{definition}
-
-  \begin{definition}[Transition map]
-  \end{definition}
-
-  \begin{definition}[Lie group]
-    A \textit{Lie group} is a topological group in which the group operations are smooth (inifinitely differentiable), 
-    and which is also a smooth manifold.
-  \end{definition}
-
