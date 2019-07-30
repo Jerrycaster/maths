@@ -63,13 +63,31 @@
     $(U_i,E_i,\varphi_i),(U_j,E_j,\varphi_j)$ such that $U_i\cap U_j\neq\varnothing$, the transition 
     maps $\tau_{ij},\tau_{ji}$ are differentiable in $\R^n$. That is, all their partial derivatives 
     exist and are continuous.
-    
-    We call $\tau_{ij}$ and $\tau_{ji}$ \textit{diffeomorphisms}, and say 
-    that $\varphi_i(U_i\cap U_j)$ and $\varphi_j(U_i\cap U_j)$ are \textit{diffeomorphic}.
+    % We call $\tau_{ij}$ and $\tau_{ji}$ \textit{diffeomorphisms}, and say 
+    % that $\varphi_i(U_i\cap U_j)$ and $\varphi_j(U_i\cap U_j)$ are \textit{diffeomorphic}.
   \end{definition}
 
+  \begin{definition}[Differentiable function]
+    Let $M$ be a differentiable $m$-manifold, $N$ a differentiable $n$-manifold, and $f:M\to N$ a continuous function. Fix charts 
+    $(U_1,E_1,\varphi_1)$, $(U_2,E_2,\varphi_2)$ be charts for $M$, $N$ respectively. We say that
+    $f$ is \textit{differentiable} if the function 
+    $$\varphi_2\circ f\circ\varphi_1^{-1}:\R^m\to\R^n$$
+    is differentiable.
+
+    If $f$ is a homeomorphism, and $\varphi_1\circ f\circ\varphi_2^{-1}:\R^n\to\R^m$ differentiable, then 
+    we say $f$ is a \textit{diffeomorphism}, and $M$ and $N$ are \textit{diffeomorphic}.
+
+    Note this requires $m=n$, so that the Jacobian matrix of $\varphi_2\circ f\circ\varphi_1^{-1}$ is 
+    invertible.
+  \end{definition}
+
+  \begin{example}
+    If we let $N=\R^n$, then $f:M\to\R^n$ is differentiable if the function $f\circ\varphi^{-1}:\R^m
+    \to\R^n$ is differentiable, for all charts $(U,E,\varphi)$ of $M$.
+  \end{example}
+
   Given an $n$-dimensional differentiable manifold $M$, we can attach to every point of $M$ a 
-  ``tangent space'' - a vector space which is usually isomorphic to $\R^n$.
+  ``tangent space'' - a vector space isomorphic to $\R^n$.
 
   \begin{definition}[Tangent space]
     Fix $x\in M$, and choose any chart $(U,E,\varphi)$ with $x\in U$. Let $\Gamma$ be the set of 
@@ -87,8 +105,34 @@
   (\varphi\circ\gamma_1)'(c)=(\varphi\circ\gamma_2)'(c),$ and we denote the tangent vectors $\gamma_i'(c)$.
 
   \begin{prop}
-    $$T_xM\cong\R^n$$
+    If we define vector addition and scalar multiplication in $T_xM$ by 
+    $$\gamma_1'+\lambda\gamma_2':=\{\gamma:(\varphi\circ\gamma)'(0)=(\varphi\circ\gamma_1)'(0)
+    +\lambda(\varphi\circ\gamma_2)'(0),\text{ where }\gamma_1\in\gamma_1',\gamma_2\in\gamma_2',\lambda\in\R\},$$
+    the identity element in $T_xM$ as the equivalence class of constant curves:
+    \begin{align*}
+      \gamma_0'&=\{\gamma:\gamma(t)=c\in U,\,\forall t\in (-1,1)\} \\
+               &=\{\gamma:(\varphi\circ\gamma)'(0)=0\},
+    \end{align*}
+    and the inverse of $\gamma'$ by
+    $$-\gamma':=\{-\gamma:(\varphi\circ(-\gamma))'(0)=-(\varphi\circ\gamma)'(0),\text{ where }\gamma\in\gamma'\}.$$
+    Then $T_xM\cong\R^n$.
   \end{prop}
 
-  \begin{proof}
-  \end{proof}
+  \begin{definition}[Directional derivative]
+    Given a differentiable $n$-manifold $M$ and a differentiable function $f:M\to\R^n$, we define 
+    the \textit{directional derivative} of $f$ in the direction $\gamma'$ as 
+    $$D_\gamma(f):=(f\circ\gamma)'(0),\,\forall\gamma\in\gamma'.$$
+  \end{definition}
+
+  \begin{definition}[Pushforward]
+    If $\varphi:M\to N$ is a differentiable function of differentiable manifolds, then we define the 
+    \textit{pushforward} of $\varphi$ at $x$ as the linear map 
+    $$d\varphi_x:T_xM\to T_{\varphi(x)}N,$$
+    defined by $d\varphi_x(\gamma')=(\varphi\circ\gamma)'(0)\,\,\forall\gamma\in\gamma'$.
+  \end{definition}
+
+  \subsubsection{Lie groups}
+  \label{sec:3.2.1}
+
+  \begin{definition}[Lie group]
+  \end{definition}
